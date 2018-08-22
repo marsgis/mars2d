@@ -6,8 +6,10 @@ MarsGIS for Leaflet地图框架 是[火星科技](http://www.marsgis.cn/)研发�
 详情请点击： [http://leaflet.marsgis.cn](http://leaflet.marsgis.cn)
 
 
-demo系统： [http://www.marsgis.cn/leaflet/demo.html](http://www.marsgis.cn/leaflet/demo.html)
+demo系统： [http://leaflet.marsgis.cn/demo.html](http://leaflet.marsgis.cn/demo.html)
 
+ ![image](http://leaflet.marsgis.cn/img/project/1.jpg)
+ ![image](http://leaflet.marsgis.cn/img/project/2.jpg)
 
 
 
