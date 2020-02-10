@@ -12,16 +12,17 @@ demo系统： [http://leaflet.marsgis.cn/demo.html](http://leaflet.marsgis.cn/de
  
 ## 已开源的子项目 
 
-### 项目模版 - 传统技术栈
-1.最简项目模板[https://github.com/marsgis/mars2d-simple-es5](https://github.com/marsgis/mars2d-simple-es5)
-2.含widget功能模块模板[https://github.com/marsgis/mars2d-simple-es5-widget](https://github.com/marsgis/mars2d-simple-es5-widget)
+### 传统技术栈 项目模版
+1. 最简项目模板[https://github.com/marsgis/mars2d-simple-es5](https://github.com/marsgis/mars2d-simple-es5)
+2. 含widget功能模块模板[https://github.com/marsgis/mars2d-simple-es5-widget](https://github.com/marsgis/mars2d-simple-es5-widget)
  
-### 项目模版 - Vue技术栈
-1.最简项目模板[https://github.com/marsgis/mars2d-simple-vue](https://github.com/marsgis/mars2d-simple-vue)
-2.含widget功能模块模板[https://github.com/marsgis/mars2d-simple-vue-widget](https://github.com/marsgis/mars2d-simple-vue-widget)
+### Vue技术栈 项目模版
+1. 最简项目模板[https://github.com/marsgis/mars2d-simple-vue](https://github.com/marsgis/mars2d-simple-vue)
+2. 含widget功能模块模板[https://github.com/marsgis/mars2d-simple-vue-widget](https://github.com/marsgis/mars2d-simple-vue-widget)
  
 
 
 
 ## 版权说明
-说明：当前我们框架并未全部开源，也许将来的某一天，我们选择将平台框架进行开源，您可以先Star我们的仓库，关注我们，第1时间了解我们的更新！
+版权所有：[火星科技](http://www.marsgis.cn/)
+开源说明：当前我们框架并未全部开源，也许将来的某一天，我们选择将平台框架进行全部开源，您可以先Star我们的仓库，关注我们，第一时间了解我们的更新！
