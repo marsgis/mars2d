@@ -5,7 +5,8 @@ Mars2D官网： [http://leaflet.marsgis.cn](http://leaflet.marsgis.cn)
 
 
 ## 运行效果 
-demo系统： [http://leaflet.marsgis.cn/demo.html](http://leaflet.marsgis.cn/demo.html)
+ [项目体验](http://leaflet.marsgis.cn/project.html)
+
  ![image](http://leaflet.marsgis.cn/docs/img/project/1.jpg)
  ![image](http://leaflet.marsgis.cn/docs/img/project/2.jpg)
 
