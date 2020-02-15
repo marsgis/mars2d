@@ -13,12 +13,12 @@ demo系统： [http://leaflet.marsgis.cn/demo.html](http://leaflet.marsgis.cn/de
 ## 已开源的子项目 
 
 ### 传统技术栈 项目模版
-1. 最简项目模板[https://github.com/marsgis/mars2d-simple-es5](https://github.com/marsgis/mars2d-simple-es5)
-2. 含widget功能模块模板[https://github.com/marsgis/mars2d-simple-es5-widget](https://github.com/marsgis/mars2d-simple-es5-widget)
+1. 最简项目[https://github.com/marsgis/mars2d-simple-es5](https://github.com/marsgis/mars2d-simple-es5)
+2. 基础项目（含widget模块）[https://github.com/marsgis/mars2d-simple-es5-widget](https://github.com/marsgis/mars2d-simple-es5-widget)
  
 ### Vue技术栈 项目模版
-1. 最简项目模板[https://github.com/marsgis/mars2d-simple-vue](https://github.com/marsgis/mars2d-simple-vue)
-2. 含widget功能模块模板[https://github.com/marsgis/mars2d-simple-vue-widget](https://github.com/marsgis/mars2d-simple-vue-widget)
+1. 最简项目 [https://github.com/marsgis/mars2d-simple-vue](https://github.com/marsgis/mars2d-simple-vue)
+2. 基础项目（含widget模块）[https://github.com/marsgis/mars2d-simple-vue-widget](https://github.com/marsgis/mars2d-simple-vue-widget)
  
 
 
