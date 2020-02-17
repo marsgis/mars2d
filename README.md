@@ -20,10 +20,14 @@ Mars2D官网： [http://leaflet.marsgis.cn](http://leaflet.marsgis.cn)
 2. 基础项目（含widget模块）[https://github.com/marsgis/mars2d-simple-es5-widget](https://github.com/marsgis/mars2d-simple-es5-widget)
  
 ### Vue技术栈 项目模版
+1. 脚手架 [https://github.com/marsgis/mars2d-vue-cli](https://github.com/marsgis/mars2d-vue-cli)
 1. 最简项目 [https://github.com/marsgis/mars2d-simple-vue](https://github.com/marsgis/mars2d-simple-vue)
 2. 基础项目（含widget模块）[https://github.com/marsgis/mars2d-simple-vue-widget](https://github.com/marsgis/mars2d-simple-vue-widget)
  
 
+### React技术栈&Angular技术栈 项目模版
+ 当前未提供，原理和Vue类似，可以参考Vue项目
+  
 
 
 ## 版权说明
