@@ -16,13 +16,12 @@ Mars2D官网： [http://mars2d.cn](http://mars2d.cn)
 ## 已开源的子项目 
 
 ### 传统技术栈 项目模版
-1. 最简项目[https://github.com/marsgis/mars2d-es5-project](https://github.com/marsgis/mars2d-es5-project)
-2. 基础项目（含widget模块）[https://github.com/marsgis/mars2d-es5-project-widget](https://github.com/marsgis/mars2d-es5-project-widget)
+1. 最简项目[https://github.com/marsgis/mars2d-es5-template](https://github.com/marsgis/mars2d-es5-template)
+2. 基础项目（含widget模块）[https://github.com/marsgis/mars2d-es5-widget](https://github.com/marsgis/mars2d-es5-widget)
  
 ### Vue技术栈 项目模版
-1. 脚手架 [https://github.com/marsgis/mars2d-vue-cli](https://github.com/marsgis/mars2d-vue-cli)
-1. 最简项目 [https://github.com/marsgis/mars2d-vue-project](https://github.com/marsgis/mars2d-vue-project)
-2. 基础项目（含widget模块）[https://github.com/marsgis/mars2d-vue-project-widget](https://github.com/marsgis/mars2d-vue-project-widget)
+1. 最简项目 [https://github.com/marsgis/mars2d-vue-template](https://github.com/marsgis/mars2d-vue-template)
+2. 基础项目（含widget模块）[https://github.com/marsgis/mars2d-vue-widget](https://github.com/marsgis/mars2d-vue-widget)
  
 
 ### React技术栈&Angular技术栈 项目模版
