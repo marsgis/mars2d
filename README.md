@@ -43,7 +43,7 @@ Github：[https://github.com/marsgis/mars2d](https://github.com/marsgis/mars2d)
 
 | 技术栈 | Github | 国内Gitee  |   说明  | 
 |  ----|----  | ----| ----  |
-|Vue2| [mars2d-vue-template](https://github.com/marsgis/mars2d-vue-template) |[mars2d-vue-template](https://gitee.com/marsgis/mars2d-vue-template)  | Vue2最简的项目模板  |  
+|Vue| [mars2d-vue-template](https://github.com/marsgis/mars2d-vue-template) |[mars2d-vue-template](https://gitee.com/marsgis/mars2d-vue-template)  | Vue最简的项目模板  |  
 |原生JS | [mars2d-es5-template](https://github.com/marsgis/mars2d-es5-template) |[mars2d-es5-template](https://gitee.com/marsgis/mars2d-es5-template)  | 原生JS最简的项目模板  |  
 
 
