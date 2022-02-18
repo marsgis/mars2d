@@ -1,6 +1,23 @@
 # Mars2D更新日志  
 
 -------------------------------------------
+## 3.0.6  2022-2-18
+#### Breaking Changes 📣
+- 移除axios库，改用 mars2d.Util.fetchJson或sendAjax方法
+- 优化pbf图层，vectorTileLayerStyles参数改名style，并简化了参数形式
+
+#### Additions 🎉
+- 功能示例vue版上线发布
+- wms图层增加click事件和popup支持
+- 增加 mars2d.d.ts 对TS支持 (测试中,可能有问题)
+
+#### Fixes 🔧  
+- 检查API文档描述错误并修复
+- 修复v3.0.5版show修改带来的瓦片图层不展示
+- 圆、矩形完成后激活编辑失败 
+
+
+
 ## 3.0.5  - 2022-1-17
 #### Additions 🎉
 - 对图层增加show参数和属性
