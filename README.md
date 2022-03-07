@@ -59,7 +59,7 @@ Github：[https://github.com/marsgis/mars2d](https://github.com/marsgis/mars2d)
 |技术栈 | Github | 国内Gitee  |   说明  | 
 |----|----  | ----| ----  |
 |**Vue** | [mars2d-vue-project](https://github.com/marsgis/mars2d-vue-project) |[mars2d-vue-project](https://gitee.com/marsgis/mars2d-vue-project)  | Vue开发的基础项目  | 
-|原生JS | [mars2d-widget-project](https://github.com/marsgis/mars2d-widget-project) |[mars2d-widget-project](https://gitee.com/marsgis/mars2d-widget-project)  | 原生JS开发的(widget模式)基础项目 |   
+|原生JS | [mars2d-es5-project](https://github.com/marsgis/mars2d-es5-project) |[mars2d-es5-project](https://gitee.com/marsgis/mars2d-es5-project)  | 原生JS开发的(widget模式)基础项目 |   
 
 
   
