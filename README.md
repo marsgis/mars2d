@@ -28,7 +28,6 @@ Github：[https://github.com/marsgis/mars2d](https://github.com/marsgis/mars2d)
 国内Gitee：[https://gitee.com/marsgis/mars2d](https://gitee.com/marsgis/mars2d)  
 
  
- 
  ## 功能示例
  对平台每个功能编写的案例代码，可以阅读每个示例代码来学习各功能，与官网功能示例一致效果。
 
@@ -46,15 +45,14 @@ Github：[https://github.com/marsgis/mars2d](https://github.com/marsgis/mars2d)
 |  ----|----  | ----| ----  |
 |**Vue**| [mars2d-vue-template](https://github.com/marsgis/mars2d-vue-template) |[mars2d-vue-template](https://gitee.com/marsgis/mars2d-vue-template)  | Vue最简的项目模板  |  
 |原生JS | [mars2d-es5-template](https://github.com/marsgis/mars2d-es5-template) |[mars2d-es5-template](https://gitee.com/marsgis/mars2d-es5-template)  | 原生JS最简的项目模板  |  
-
-
+ 
 ### React技术栈 & Angular技术栈
  当前未提供，原理和Vue类似，可以参考Vue项目
 
 
 ## 基础项目
 基础项目是具备一个GIS项目常见功能的项目模板，只用更换数据及叠加业务即可完成项目交付。
-如果需要更多功能可以考虑购买[付费项目模板](http://mars2d.cn/template)。
+如果需要更多功能可以考虑购买[付费项目模板](http://mars2d.cn/template.html)。
 
 |技术栈 | Github | 国内Gitee  |   说明  | 
 |----|----  | ----| ----  |
@@ -62,7 +60,17 @@ Github：[https://github.com/marsgis/mars2d](https://github.com/marsgis/mars2d)
 |原生JS | [mars2d-es5-project](https://github.com/marsgis/mars2d-es5-project) |[mars2d-es5-project](https://gitee.com/marsgis/mars2d-es5-project)  | 原生JS开发的(widget模式)基础项目 |   
 
 
-  
+ 
+
+
+
+## 其他
+
+|技术栈 | Github | 国内Gitee  |   说明  | 
+|----|----  | ----| ----  |
+|ES6 | [mars2d-plugin](https://github.com/marsgis/mars2d-plugin) |[mars2d-plugin](https://gitee.com/marsgis/mars2d-plugin)  | 部分开源插件  |  
+ 
+
 
 
  
