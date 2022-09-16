@@ -52,7 +52,9 @@ Github：[https://github.com/marsgis/mars2d](https://github.com/marsgis/mars2d)
 
 ## 基础项目
 基础项目是具备一个GIS项目常见功能的项目模板，只用更换数据及叠加业务即可完成项目交付。
-如果需要更多功能可以考虑购买[付费项目模板](http://mars2d.cn/template.html)。
+如果需要更多功能可以考虑购买[付费项目模板](http://mall.marsgis.cn/#/product-list?platform=mars2d&category=project)。
+
+ 
 
 |说明 |教程  |视频  | Github源码 | 国内Gitee源码  |   
 |----|----  |----  | ----| ----  |
