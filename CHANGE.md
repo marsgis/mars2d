@@ -46,6 +46,19 @@
 
 
 ---
+## 3.1.15 - 2023-05-23
+#### 增加 ⚡
+- GraphicLayer增加bringToBack和bringToFront方法
+- Map增加isLoading属性和增加地图加载完成load事件
+
+#### 修复 🔧
+- GroupLayer图层zIndex设置无效
+- 谷歌在线地图服务修复
+- ExpImg.expByDraw按区域截图未恢复地图状态
+
+
+
+
 ## 3.1.14 - 2023-04-24
 #### 增加 ⚡
 - 大部分图层支持透明度设置
