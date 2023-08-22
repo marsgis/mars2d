@@ -46,6 +46,12 @@
 
 
 ---
+## 3.1.19 - 2023-8-22
+#### 优化 💪
+- 矢量对象的zIndex属性支持
+
+
+
 ## 3.1.17 - 2023-7-3
 #### 修复 🔧
 - graphic和GraphicLayer的pane参数无效
@@ -77,7 +83,6 @@
 - GroupLayer图层zIndex设置无效
 - 谷歌在线地图服务修复
 - ExpImg.expByDraw按区域截图未恢复地图状态
-
 
 
 
