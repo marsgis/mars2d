@@ -46,11 +46,23 @@
 
 
 ---
+## 3.2.1 - 2024-2-22
+#### 增加 ⚡
+- 矢量对象增加label附加文本属性
+
+#### 优化 💪
+- 增加kml、shp格式文件加载示例
+- 重写了Util.template方法
+
+#### 修复 🔧
+- ClusterLayer聚合图层bindPopup无效
+
+
+
 ## 3.2.0 - 2024-1-16
 #### 增加 ⚡
-- graphic矢量对象增加show属性
-- graphic矢量对象增加hasEdit、isAutoEditing参数
-
+- 矢量对象增加show属性
+- 矢量对象增加hasEdit、isAutoEditing参数
 
 
 
