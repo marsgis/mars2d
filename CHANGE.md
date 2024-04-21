@@ -46,6 +46,15 @@
 
 
 ---
+## 3.2.4 - 2024-4-21
+#### 优化 💪
+- ToolBar优化样式  
+- EchartsLayer增加on、off绑定事件
+- Marker、Label、DivGraphic增加minZoom、maxZoom限定显示层级参数
+
+
+
+
 ## 3.2.1 - 2024-2-22
 #### 增加 ⚡
 - 矢量对象增加label附加文本属性
