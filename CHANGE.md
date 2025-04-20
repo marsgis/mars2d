@@ -41,7 +41,7 @@ Mars2D的版本号包括三个部分，比如 **v3.2.1**版本中，**主版本�
 
 # 4. 更新日志
  
-## 3.3.2 - 2025-04-XX
+## 3.3.2 - 2025-04-20
 #### 新增 ⚡
 - 新增 BusineDataLayer业务数据图层
 - 新增 KeyboardRoam 键盘控制类
@@ -50,6 +50,7 @@ Mars2D的版本号包括三个部分，比如 **v3.2.1**版本中，**主版本�
 #### 优化 💪
 - 线面编辑时增加整体平移编辑点
 - ClusterLayer增加clusterEnabled属性，可以控制聚合的开关
+- QueryGeoServer增加点选查询
 
 #### 弃用 & API重构 🔒
 - 移除了TdtPOI、BaiduPOI、GaodePOI、GaodeRoute类(改用QueryPOI、QueryRoute)
