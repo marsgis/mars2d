@@ -41,6 +41,22 @@ Mars2D的版本号包括三个部分，比如 **v3.2.1**版本中，**主版本�
 
 # 4. 更新日志
  
+## 3.3.3 - 2025-8-1 
+#### 新增 ⚡
+- 新增Rain、Snow、BouncingMarker、PolyDecorator矢量对象
+- 增加矢量对象的复制粘贴功能
+
+#### 优化 💪
+- Circle增加diffuse样式参数
+- Map增加getLayrsTree方法
+- 增加mars2d.PolyUtil.movePoints方法
+- 增加了一些功能示例（旋转地图、迁徙效果、有线上文本的折线、时序轨迹路线）
+
+#### 修复 🔧
+- WmsLayer请求参数去掉冗余的url参数
+
+
+
 ## 3.3.2 - 2025-04-20
 #### 新增 ⚡
 - 新增 BusineDataLayer业务数据图层
