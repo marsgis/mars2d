@@ -41,6 +41,18 @@ Mars2D的版本号包括三个部分，比如 **v3.2.1**版本中，**主版本�
 
 # 4. 更新日志
  
+## 3.3.4 - 2025-9-20
+#### 优化 💪
+- 矢量对象增加setOptions方法
+- GraphicLayer图层增加loadJSON方法
+
+#### 修复 🔧
+- 编辑矢量对象时的编辑点右键菜单未正确获取
+- QueryPOI.getAddress方法调用无返回值
+- 编辑矢量对象部分情况未触发editStop事件
+- 天地图POI服务的offset改为count参数
+
+
 ## 3.3.3 - 2025-8-3 
 #### 新增 ⚡
 - 新增Rain、Snow、BouncingMarker、PolyDecorator矢量对象
