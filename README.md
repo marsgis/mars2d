@@ -29,8 +29,8 @@ Github：[https://github.com/marsgis/mars2d](https://github.com/marsgis/mars2d)
 
 | 说明 | 教程  | 视频  |Github源码 | 国内Gitee源码  |    
 | ----|----  | ----  | ----| ----  |
-|原生JS版 | [查看](http://mars2d.cn/dev/guide/project/example-es5.html) | 暂无 | [mars2d-es5-example](https://github.com/marsgis/mars2d-es5-example) |[mars2d-es5-example](https://gitee.com/marsgis/mars2d-es5-example)  | 
-|Vue版 |[查看](http://mars2d.cn/dev/guide/project/example-vue.html) |[查看](https://www.bilibili.com/video/BV1pb4y1W7NG/)| [mars2d-vue-example](https://github.com/marsgis/mars2d-vue-example) |[mars2d-vue-example](https://gitee.com/marsgis/mars2d-vue-example)  |  
+|原生JS版 | [查看](http://mars2d.cn/docs/guide/example-es5/) | 暂无 | [mars2d-es5-example](https://github.com/marsgis/mars2d-es5-example) |[mars2d-es5-example](https://gitee.com/marsgis/mars2d-es5-example)  | 
+|Vue版 |[查看](http://mars2d.cn/docs/guide/example-vue/) |[查看](https://www.bilibili.com/video/BV1pb4y1W7NG/)| [mars2d-vue-example](https://github.com/marsgis/mars2d-vue-example) |[mars2d-vue-example](https://gitee.com/marsgis/mars2d-vue-example)  |  
  
 
 
@@ -58,8 +58,8 @@ Github：[https://github.com/marsgis/mars2d](https://github.com/marsgis/mars2d)
 
 |说明 |教程  |视频  | Github源码 | 国内Gitee源码  |   
 |----|----  |----  | ----| ----  |
-|基础项目 原生JS版 |[查看](http://mars2d.cn/dev/guide/project/jcxm-es5.html) |暂无 | [mars2d-es5-project](https://github.com/marsgis/mars2d-es5-project) |[mars2d-es5-project](https://gitee.com/marsgis/mars2d-es5-project)  |
-|基础项目 Vue版|[查看](http://mars2d.cn/dev/guide/project/jcxm-vue.html) |[查看](https://www.bilibili.com/video/BV1DR4y1G75T/)| [mars2d-vue-project](https://github.com/marsgis/mars2d-vue-project) |[mars2d-vue-project](https://gitee.com/marsgis/mars2d-vue-project)  |  
+|基础项目 原生JS版 |[查看](http://mars2d.cn/docs/guide/project-es5/) |暂无 | [mars2d-es5-project](https://github.com/marsgis/mars2d-es5-project) |[mars2d-es5-project](https://gitee.com/marsgis/mars2d-es5-project)  |
+|基础项目 Vue版|[查看](http://mars2d.cn/docs/guide/project-vue/) |[查看](https://www.bilibili.com/video/BV1DR4y1G75T/)| [mars2d-vue-project](https://github.com/marsgis/mars2d-vue-project) |[mars2d-vue-project](https://gitee.com/marsgis/mars2d-vue-project)  |  
 
 
  
