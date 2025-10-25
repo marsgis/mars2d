@@ -41,6 +41,14 @@ Mars2D的版本号包括三个部分，比如 **v3.2.1**版本中，**主版本�
 
 # 4. 更新日志
  
+## 3.3.5 - 2025-10-25
+#### 优化 💪
+- 新增 EmptyTileLayer 空图层，便于切换到无底图
+- WmtsLayer图层增加pickFeaturesUrl、popup和highlight参数
+- ArcGisLayer增加token参数
+
+
+
 ## 3.3.4 - 2025-9-21
 #### 优化 💪
 - 矢量对象增加setOptions方法
