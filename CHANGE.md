@@ -41,6 +41,16 @@ Mars2D的版本号包括三个部分，比如 **v3.2.1**版本中，**主版本�
 
 # 4. 更新日志
  
+## 3.3.7 - 2025-12-30
+#### 优化 💪
+- 插件增加编译时间信息，便于排查问题
+
+#### 修复 🔧
+- GeoJsonLayer图层在mask时flyTo定位范围不对
+- ClusterLayer单击graphic触发了2次事件
+
+
+
 ## 3.3.5 - 2025-10-25
 #### 优化 💪
 - 新增 EmptyTileLayer 空图层，便于切换到无底图
@@ -121,7 +131,7 @@ Mars2D的版本号包括三个部分，比如 **v3.2.1**版本中，**主版本�
 - 矢量对象修改坐标时，部分对象label坐标未同步更新
 
 #### 弃用 & API重构 🔒
-- npm包中去掉`dist`子目录，与下载的静态包目录保持一致(如果`import "mars2d/mars2d.css"`报错，请改为`import "mars2d/mars2d.css"`)
+- npm包中去掉`dist`子目录，与下载的静态包目录保持一致(如果`import "mars2d/dist/mars2d.css"`报错，请改为`import "mars2d/mars2d.css"`)
 
 
 
