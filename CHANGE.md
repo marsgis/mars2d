@@ -1,450 +1,433 @@
-# Mars2D版本及更新日志
+# Mars2D 版本及更新日志
 
+## 1. Mars2D 的版本
 
-# 1. Mars2D的版本
+Mars2D 的版本号由三段组成。以 **v3.2.1** 为例：**主版本号为 3，大版本号为 2，小版本号为 1**。
 
-Mars2D的版本号包括三个部分，比如 **v3.2.1**版本中，**主版本号是 3，大版本号是 2，小版本号是 1**
+版本号按本次发布所包含变更的级别递增。
 
-版本号是根据本次发布中包含的变更的级别进行递增的。
-
-- **主版本**(v3)：包含重要的新特性和架构性调整，在升级时会需要由开发人员提供少量的协助才能完成。当升级到新的主版本时，你可能需要运行升级脚本、重构代码、运行其它测试以及学习新的API。
-
-- **大版本**(v3.2)：包含新增功能和API优化重构，大版本其中大部分功能是向后兼容的，只有少部分特性是不兼容的(更新日志会说明弃用的API)，参考说明或示例简单调整即可。
-
-- **小版本**(v3.2.1)：包含新的小型特性优化，bug修改等。 小版本是完全向后兼容的，在升级期间，不需要开发人员提供协助。【授权版时：无论哪种授权方式，小版本均是免费更新】
+- **主版本**（v3）：包含重要新特性与架构性调整，升级时可能需要开发人员少量配合。升级到新的主版本时，可能需要执行升级脚本、重构代码、补充测试并学习新的 API。
+- **大版本**（v3.2）：包含新增功能与 API 优化重构。大部分功能向后兼容，仅少数特性不兼容（更新日志会说明弃用的 API），参照说明或示例做简单调整即可。
+- **小版本**（v3.2.1）：包含小幅特性优化与缺陷修复等，完全向后兼容，升级期间无需开发人员配合。授权版无论采用哪种授权方式，小版本均可免费更新。
 
 ## 历史版本下载
 
-我们已切换到v3.1.0版本为例：
-- npm 安装的项目，请打开package.json修改mars2d版本号`"mars2d": "3.1.0"` ，再npm install重新安装
-- 静态引入的，请复制链接[https://registry.npmjs.org/mars2d/-/mars2d-3.1.0.tgz](https://registry.npmjs.org/mars2d/-/mars2d-3.1.0.tgz) 后，在浏览器地址栏粘贴并修改版本号为指定版本后会回车进行下载。
+以 v3.1.0 版本为例：
+- npm 安装的项目：打开 package.json，把 mars2d 的版本号改为 `"mars2d": "3.1.0"`，再执行 `npm install` 重新安装。
+- 静态引入的项目：复制链接 [https://registry.npmjs.org/mars2d/-/mars2d-3.1.0.tgz](https://registry.npmjs.org/mars2d/-/mars2d-3.1.0.tgz)，在浏览器地址栏粘贴后把版本号改成目标版本，回车即可下载。
 
-# 2. 发布频率
+## 2. 发布频率
 
-我们会定期发布新版本，以便随着 Mars2D 的不断演进，你可以提前计划并协调这些升级工作。
+我们会定期发布新版本，你可以据此提前规划并安排升级工作。
 
-> 这些日期仅供一般性参考，如有更改，恕不另行通知。
+> 以下时间仅供参考，如有调整不再另行通知。
 
 通常的发布周期如下：
-- 主版本 没有时间规划，如果有架构性变化时会升主版本
-- 每年 发布1个大版本 
-- 每月 发布1个小版本
+- 主版本：无固定周期，出现架构性变化时升级。
+- 大版本：每年发布 1 个。
+- 小版本：每月发布 1 个。
 
-# 3. 弃用策略
-"弃用 & API重构"（比如移除特定的 API 和特性）有时候是必须的，比如创新、更高效率、让最佳实践与时俱进、变更依赖关系甚至来自 Web 平台自身的变化。
+## 3. 弃用策略
 
-要让这些转变尽可能的简单，我们会给你下列保证：
-- 我们会尽量减少重大变更的数量，并尽可能提供迁移工具。
-- 我们会遵循这里所讲的弃用策略，让你有时间把应用升级到最新的 API 和最佳实践。
+“弃用与 API 重构”（例如移除某个 API 或特性）有时不可避免：为了创新、提升效率、跟上最佳实践、调整依赖关系，甚至应对 Web 平台自身的变化。
 
+为让这些转变尽可能平滑，我们给出以下保证：
+- 尽量减少破坏性变更，并尽可能提供迁移工具。
+- 遵循本策略，为应用升级到最新 API 和最佳实践留出时间。
 
+## 4. 更新日志
 
-# 4. 更新日志
- 
-## 3.4.2 - 2026-6-3  
-#### 修复 🔧
-- map.smallTooltip.enabled无法禁用
-- Marker的verticalOrigin属性旋转问题
+## 3.5.0 - 2026-11-01
+#### 重要说明 📣
+- 优化 SDK 打包：主文件 mars2d.js 由 2.1 MB 减小到 0.86 MB（约 60%），同时提升运行性能。
+- 梳理 mars2d.d.ts 类型声明，补齐与运行时一致的公开成员。
+- 全面校正 JSDoc 注释与实际实现不一致的问题（默认值、返回值、继承关系、失效选项等），并删除或标注尚未实现的选项与文档占位。API文档支持查询属性、方法名称，并修复子类未正常显示继承于父类相关方法的错误。
+- 新增自动化测试体系：单元、契约与示例驱动测试, 真实 Chrome/Edge 端到端测试）、c8 覆盖率门槛、采集浏览器覆盖率并与 c8 合并, 串联静态检查 → 构建 → 声明校验 → 单测 → E2E。
 
-
-## 3.4.0 - 2026-2-14  
-#### 修复 🔧
-- 右键复制AntPath时错误
-- 修复其他已知问题
-
-
+#### 优化 💪
+- SVG 渲染：图片填充 pattern 按「图片 + 颜色 + 透明度」复用，避免每次 setStyle 新增节点导致 defs 无限增长；fillOpacity、imageOpacity 为 0 时不再被当作 1。
+- [GraphicLayer.clear()](http://mars2d.cn/api/GraphicLayer.html#clear) 改为批量清理，避免大数据量下逐个移除带来的 O(n²) 开销。
+- 标绘算法：闭合曲面、集结地的 normals 累加改用 push；GeoJSON 批量转换避免循环 concat；斜面标绘去掉每帧重复的 setStyle。
+- 其它：导出下载后释放 Blob URL；复用右键菜单尺寸缓存；[Marker](http://mars2d.cn/api/Marker.html) 图标尺寸轮询增加超时上限。
+- [Map.addLayer](http://mars2d.cn/api/Map.html#addLayer)：不再把 Leaflet 内部渲染器（L.SVG、L.Canvas）登记为图层，[getLayers()](http://mars2d.cn/api/Map.html#getLayers)、[getLayrsTree()](http://mars2d.cn/api/Map.html#getLayrsTree)、[getLayersByAttr()](http://mars2d.cn/api/Map.html#getLayersByAttr) 不再返回内部对象；外部传入且没有 id 的原生 Leaflet 图层会自动按 [getNextLayerId()](http://mars2d.cn/api/Map.html#getNextLayerId) 赋值，避免多个无 id 图层在图层列表中相互覆盖。
+- 依赖：运行时升级至 ECharts 6、pbf 5、rbush 4、@mapbox/vector-tile 3、simpleheat 1、proj4 2.22、esri-leaflet 3.0.19、@terraformer/arcgis 2.2.2；[PbfLayer](http://mars2d.cn/api/PbfLayer.html) 适配 PbfReader，[HeatLayer](http://mars2d.cn/api/HeatLayer.html) 适配 SimpleHeat 的构造方式；`mars2d` 自引用移入 devDependencies。
+- 构建：Rollup 2 升级至 Rollup 4，保持原有产物语义；消除 mars2d-esri 插件的 `Illegal reassignment to import` 告警；构建与打包脚本适配 commander 15、chalk 6、glob 14 的新入口。
+- 工程：d.ts 生成链路改用 TS AST，把字符串枚举改写为 `declare const` + `declare type`，把「其他」「其他参数」占位属性改写为索引签名，并新增声明校验脚本。
 
 ---
+
+## 3.4.4 - 2026-10-31
+#### 修复 🔧
+- [Circle](http://mars2d.cn/api/Circle.html) 轮廓坐标计算：角度单位由「度」改为「弧度」，并按纬度修正墨卡托半径，修复 [outlineLatlngs](http://mars2d.cn/api/Circle.html#outlineLatlngs) 与圆形查询范围错误。
+- [Map](http://mars2d.cn/api/Map.html)：[getThing](http://mars2d.cn/api/Map.html#getThing) 返回查询到的 Thing；[isFullscreen](http://mars2d.cn/api/Map.html#isFullscreen) 返回真实全屏状态；[addLayer](http://mars2d.cn/api/Map.html#addLayer) 返回图层对象；[setOptions](http://mars2d.cn/api/Map.html#setOptions) 支持字符串形式的 crs；getGraphicById 修正 attr 拼写。
+- [Map](http://mars2d.cn/api/Map.html)：[bounds](http://mars2d.cn/api/Map.html#bounds) 的 setter 改用 fitBounds（Leaflet 没有 setBounds）；[destroy()](http://mars2d.cn/api/Map.html#destroy) 幂等，销毁后 [removeLayer](http://mars2d.cn/api/Map.html#removeLayer) 安全返回；[getLayersByAttr](http://mars2d.cn/api/Map.html#getLayersByAttr) 未命中时不再混入 null、undefined。
+- [AntPath](http://mars2d.cn/api/AntPath.html)：修正 [toGeoJSON](http://mars2d.cn/api/AntPath.html#toGeoJSON) 的精度参数（此前导出的坐标全为 NaN）；修正绘制类型判断。
+- 测量标绘：距离、面积在单点取消或撤销顶点时不再抛出异常，返回的 Promise 不再永久挂起；按 Esc 取消后不再产生半成品，返回 null（示例：[量算](http://mars2d.cn/editor-vue.html?id=thing/measure)）。
+- 编辑：图形未上图时，isAutoEditing 延迟到 add 之后再创建编辑点，避免构造期崩溃与 disable 报错。
+- 绘制：取消绘制（按 Esc 或再次点击）时，[BaseDraw](http://mars2d.cn/api/BaseDraw.html) 同步向图层派发 drawCancel，[GraphicLayer.startDraw()](http://mars2d.cn/api/GraphicLayer.html#startDraw) 返回的 Promise 不再永久挂起（示例：[标绘](http://mars2d.cn/editor-vue.html?id=layer-graphic/draw/draw)）。
+- 图形基类：setOptions 局部更新时不再错误地解除 popup、tooltip 与右键菜单的绑定；未上图时设置 label 不再崩溃；toJSON 对纯 Leaflet 图层（无 marsOptions）做兜底，不再误判为「GML 解析器不可用」。
+- 控件：[ToolBar](http://mars2d.cn/api/ToolBar.html) 的 bbox 分支不再被后续 setView 覆盖，定位定时器在移除时清理；修复 [MapSwich](http://mars2d.cn/api/MapSwich.html) 的高亮问题；[Slider](http://mars2d.cn/api/Slider.html) 释放 document 上的鼠标事件；[OverviewMap](http://mars2d.cn/api/OverviewMap.html) 移除时销毁 miniMap（示例：[工具按钮栏](http://mars2d.cn/editor-vue.html?id=control/basis/toolBar)、[鹰眼地图](http://mars2d.cn/editor-vue.html?id=control/basis/overviewMap)）。
+- 瓦片图层：[WmsLayer](http://mars2d.cn/api/WmsLayer.html)、[WmtsLayer](http://mars2d.cn/api/WmtsLayer.html) 的弹窗在无要素时不再抛错；WMS 1.3.0 使用 crs 且 EPSG:4326 的 bbox 纬度在前；ArcGIS 紧凑切片释放 Blob URL；修复代理参数重复拼接；[ImageLayer](http://mars2d.cn/api/ImageLayer.html)、[ImageRotatedLayer](http://mars2d.cn/api/ImageRotatedLayer.html) 用 L.GeoJSON 替代已移除的 L.json；[SmTileLayer](http://mars2d.cn/api/SmTileLayer.html) 的 setUrl() 清空瓦片 URL 缓存，更换服务地址后不再请求旧地址。
+- 图层：[ClusterLayer](http://mars2d.cn/api/ClusterLayer.html) 支持未上图先加数据，未上图时 show=false 不再抛错；[CanvasMarkerLayer](http://mars2d.cn/api/CanvasMarkerLayer.html) 支持未上图先加数据；[VirtualGrid](http://mars2d.cn/api/VirtualGrid.html) 平移不再累积 _cells，未上图时 remove、destroy 为安全空操作；[GeoJsonLayer](http://mars2d.cn/api/GeoJsonLayer.html)、[GraphicLayer](http://mars2d.cn/api/GraphicLayer.html)、[GroupLayer](http://mars2d.cn/api/GroupLayer.html) 在 show:false 时不渲染；[BusineDataLayer](http://mars2d.cn/api/BusineDataLayer.html) 的 onRemove 透传 map，修复 removeLayer、destroy 抛错。
+- WFS：[WfsLayer](http://mars2d.cn/api/WfsLayer.html) 遇到 OWS 异常报文时回调 endfun，调用方不再永久等待；L.Filter.and/or/function 工厂不再把首个参数当作 thisArg，修复参数错位（示例：[OGC WFS服务](http://mars2d.cn/editor-vue.html?id=layer-graphic/wfs/ogc-wfs)）。
+- 查询：天地图 POI（原 TdtPOI，现由 [QueryPOI](http://mars2d.cn/api/QueryPOI.html) 提供）的逆地理编码改用 fetchJson 解析响应体，与其它服务保持一致（示例：[POI点查询](http://mars2d.cn/editor-vue.html?id=query/poi)）。
+- Canvas 系列：[CanvasImage](http://mars2d.cn/api/CanvasImage.html) 未指定渲染器时默认使用 L.Canvas，修复默认 SVG 渲染器下 addTo 抛出 `_updateImageOverlay is not a function` 的问题；[CanvasMarkerLayer](http://mars2d.cn/api/CanvasMarkerLayer.html) 在图标异步加载完成或图层已移除后不再绘制，iconAnchor、iconSize 缺省时按 0 处理。
+- 图形对象：[Marker](http://mars2d.cn/api/Marker.html) 拖动监听去重、coordinates 赋值修正（Point、Circle、Ellipse 同步更新）；[Polyline](http://mars2d.cn/api/Polyline.html) 只设 text 不再崩溃，Canvas 渲染器下不再访问 _path；[MovingMarker](http://mars2d.cn/api/MovingMarker.html) 零时长段不再死循环；[PolyDecorator](http://mars2d.cn/api/PolyDecorator.html) 更新 bounds。
+- 工具方法：[Util.getTemplateHtml](http://mars2d.cn/api/Util.html#.getTemplateHtml) 的字符串 format 不再吞掉整个模板；[Util.fetchBlob](http://mars2d.cn/api/Util.html#.fetchBlob) 失败时会 reject；属性值为 0、false 时不再被丢弃；[MarsArray](http://mars2d.cn/api/MarsArray.html) 支持 id=0，remove 不会误删末尾元素。
+- 其它：[ArcGisImageLayer](http://mars2d.cn/api/ArcGisImageLayer.html) 多实例 id 不再共用；[MapVLayer](http://mars2d.cn/api/MapVLayer.html) 未传 data 时不再渲染失败；[EchartsLayer](http://mars2d.cn/api/EchartsLayer.html) 未初始化时事件回退到 Leaflet；[ExpImg](http://mars2d.cn/api/ExpImg.html) 未引入 domtoimage 时给出提示。
+- [PointTrans.dms2degree](http://mars2d.cn/api/PointTrans.html#.dms2degree)：负值（南纬、西经）不再丢失符号，与 [degree2dms](http://mars2d.cn/api/PointTrans.html#.degree2dms) 互为逆运算（示例：[坐标拾取和转换](http://mars2d.cn/editor-vue.html?id=map/manager/pointTrans)）。
+- 移除内部实现类 GaodePOI、GaodeRoute 残留的类级文档注释，二者不再出现在公开 API 文档中（对外统一使用 [QueryPOI](http://mars2d.cn/api/QueryPOI.html)、[QueryRoute](http://mars2d.cn/api/QueryRoute.html)）。
+
+## 3.4.3 - 2026-09-10
+#### 优化 💪
+- [TileLayer](http://mars2d.cn/api/TileLayer.html)（XYZ 瓦片图层）为 EPSG:4326 坐标系时，支持叠加显示在 EPSG:3857 坐标系的地图中（示例：[4326底图](http://mars2d.cn/editor-vue.html?id=layer-tile/crs/epsg4326)）。
+- [Ellipse](http://mars2d.cn/api/Ellipse.html) 增加绘制功能，对应 [DrawEllipse](http://mars2d.cn/api/DrawEllipse.html) 绘制类（示例：[Ellipse 椭圆](http://mars2d.cn/editor-vue.html?id=graphic/basis/ellipse)）。
+- 优化 [PointTrans.degree2dms](http://mars2d.cn/api/PointTrans.html#.degree2dms) 方法（示例：[坐标拾取和转换](http://mars2d.cn/editor-vue.html?id=map/manager/pointTrans)）。
+- [ToolButton](http://mars2d.cn/api/ToolButton.html) 支持设置 title 与 icon 图标（[setTitle](http://mars2d.cn/api/ToolButton.html#setTitle)、[setIcon](http://mars2d.cn/api/ToolButton.html#setIcon)）（示例：[自定义工具栏按钮](http://mars2d.cn/editor-vue.html?id=control/basis/toolButton)）。
+
+## 3.4.2 - 2026-06-03
+#### 修复 🔧
+- [Map](http://mars2d.cn/api/Map.html) 的 [smallTooltip](http://mars2d.cn/api/Map.html#smallTooltip) 提示窗（[SmallTooltip](http://mars2d.cn/api/SmallTooltip.html)）无法通过 [enabled](http://mars2d.cn/api/SmallTooltip.html#enabled) 禁用（示例：[SmallTooltip 鼠标小提示窗](http://mars2d.cn/editor-vue.html?id=control/inside/smallTooltip)）。
+- [Marker](http://mars2d.cn/api/Marker.html) 的 verticalOrigin 属性在旋转时的问题（示例：[Marker 图标点](http://mars2d.cn/editor-vue.html?id=graphic/basis/marker)）。
+
+## 3.4.0 - 2026-02-14
+#### 修复 🔧
+- 通过右键菜单复制 [AntPath](http://mars2d.cn/api/AntPath.html) 时出错（示例：[动画效果线](http://mars2d.cn/editor-vue.html?id=graphic/basis/antpath)）。
+- 修复其它已知问题。
+
 ## 3.3.7 - 2025-12-30
 #### 优化 💪
-- 插件增加编译时间信息，便于排查问题
+- 插件产物中增加编译时间信息，便于排查问题。
 
 #### 修复 🔧
-- GeoJsonLayer图层在mask时flyTo定位范围不对
-- ClusterLayer单击graphic触发了2次事件
-
-
+- [GeoJsonLayer](http://mars2d.cn/api/GeoJsonLayer.html) 开启 mask 时 [flyTo](http://mars2d.cn/api/GeoJsonLayer.html#flyTo) 定位范围不准确（示例：[绘制反选遮罩层](http://mars2d.cn/editor-vue.html?id=layer-tile/manage/mask)）。
+- [ClusterLayer](http://mars2d.cn/api/ClusterLayer.html) 单击 graphic 会触发 2 次事件（示例：[聚合点图层](http://mars2d.cn/editor-vue.html?id=layer-graphic/basis/cluster)）。
 
 ## 3.3.5 - 2025-10-25
 #### 优化 💪
-- 新增 EmptyTileLayer 空图层，便于切换到无底图
-- WmtsLayer图层增加pickFeaturesUrl、popup和highlight参数
-- ArcGisLayer增加token参数
+- 新增 [EmptyTileLayer](http://mars2d.cn/api/EmptyTileLayer.html) 空图层，便于切换到无底图（示例：[图层管理](http://mars2d.cn/editor-vue.html?id=layer-tile/manage/layers)）。
+- [WmtsLayer](http://mars2d.cn/api/WmtsLayer.html) 增加 pickFeaturesUrl、popup、highlight 参数（示例：[OGC WMTS服务](http://mars2d.cn/editor-vue.html?id=layer-tile/type/wmts)）。
+- [ArcGisLayer](http://mars2d.cn/api/ArcGisLayer.html) 增加 token 参数（示例：[ArcGIS MapServer](http://mars2d.cn/editor-vue.html?id=layer-tile/type/arcgis-tile)）。
 
-
-
-## 3.3.4 - 2025-9-21
+## 3.3.4 - 2025-09-21
 #### 优化 💪
-- 矢量对象增加setOptions方法
-- GraphicLayer图层增加loadJSON方法
+- 矢量对象增加 setOptions 方法。
+- [GraphicLayer](http://mars2d.cn/api/GraphicLayer.html) 增加 [loadJSON](http://mars2d.cn/api/GraphicLayer.html#loadJSON) 方法（示例：[graphic 矢量数据图层](http://mars2d.cn/editor-vue.html?id=layer-graphic/basis/graphicLayer)）。
 
 #### 修复 🔧
-- 编辑矢量对象时的编辑点右键菜单未正确获取
-- QueryPOI.getAddress方法调用无返回值
-- 编辑矢量对象部分情况未触发editStop事件
-- 天地图POI服务的offset改为count参数
+- 编辑矢量对象时，编辑点的右键菜单无法正确获取（示例：[右键菜单](http://mars2d.cn/editor-vue.html?id=control/inside/contextmenu)）。
+- [QueryPOI.getAddress](http://mars2d.cn/api/QueryPOI.html#getAddress) 调用后没有返回值（示例：[POI点查询](http://mars2d.cn/editor-vue.html?id=query/poi)）。
+- 编辑矢量对象时，部分情况下未触发 editStop 事件（示例：[标绘](http://mars2d.cn/editor-vue.html?id=layer-graphic/draw/draw)）。
+- 天地图 POI 服务的 offset 参数改为 count（示例：[POI点查询](http://mars2d.cn/editor-vue.html?id=query/poi)）。
 
-
-## 3.3.3 - 2025-8-3 
+## 3.3.3 - 2025-08-03
 #### 新增 ⚡
-- 新增Rain、Snow、BouncingMarker、PolyDecorator矢量对象
-- 增加矢量对象的复制粘贴功能
+- 新增 [Rain](http://mars2d.cn/api/Rain.html)、[Snow](http://mars2d.cn/api/Snow.html)、[BouncingMarker](http://mars2d.cn/api/BouncingMarker.html)、[PolyDecorator](http://mars2d.cn/api/PolyDecorator.html) 矢量对象（示例：[雨](http://mars2d.cn/editor-vue.html?id=graphic/basis/rain)、[雪](http://mars2d.cn/editor-vue.html?id=graphic/basis/snow)、[弹跳图标点](http://mars2d.cn/editor-vue.html?id=graphic/basis/bouncingMarker)、[线面装饰点](http://mars2d.cn/editor-vue.html?id=graphic/basis/polyDecorator)）。
+- 矢量对象支持复制粘贴。
 
 #### 优化 💪
-- Circle增加diffuse样式参数
-- Map增加getLayrsTree方法
-- 增加mars2d.PolyUtil.movePoints方法
-- 增加了一些功能示例（旋转地图、迁徙效果、有线上文本的折线、时序轨迹路线）
+- [Circle](http://mars2d.cn/api/Circle.html) 增加 diffuse 样式参数（示例：[Circle 圆](http://mars2d.cn/editor-vue.html?id=graphic/basis/circle)）。
+- [Map](http://mars2d.cn/api/Map.html) 增加 [getLayrsTree](http://mars2d.cn/api/Map.html#getLayrsTree) 方法（示例：[图层管理](http://mars2d.cn/editor-vue.html?id=layer-tile/manage/layers)）。
+- 新增 [PolyUtil.movePoints](http://mars2d.cn/api/PolyUtil.html#.movePoints) 方法。
+- 新增功能示例：[旋转地图](http://mars2d.cn/editor-vue.html?id=map/manager/rotate)、[迁徙效果](http://mars2d.cn/editor-vue.html?id=graphic/basis/polyline-migration)、[有线上文本的折线](http://mars2d.cn/editor-vue.html?id=graphic/basis/polyline-text)、[时序轨迹路线](http://mars2d.cn/editor-vue.html?id=layer-graphic/other/trackplayback)。
 
 #### 修复 🔧
-- WmsLayer请求参数去掉冗余的url参数
-- FineArrowYW最大点位应该是2个坐标
-- AntPath导出JSON有错误
-- ArcGisFeatureLayer点图标不显示
-
+- [WmsLayer](http://mars2d.cn/api/WmsLayer.html) 请求参数中去掉冗余的 url（示例：[OGC WMS服务](http://mars2d.cn/editor-vue.html?id=layer-tile/type/wms)）。
+- [FineArrowYW](http://mars2d.cn/api/FineArrowYW.html) 最大点位修正为 2 个坐标（示例：[军事标绘](http://mars2d.cn/editor-vue.html?id=layer-graphic/draw/military)）。
+- [AntPath](http://mars2d.cn/api/AntPath.html) 导出 JSON 出错（示例：[动画效果线](http://mars2d.cn/editor-vue.html?id=graphic/basis/antpath)）。
+- [ArcGisFeatureLayer](http://mars2d.cn/api/ArcGisFeatureLayer.html) 点图标不显示（示例：[ArcGIS FeatureServer服务](http://mars2d.cn/editor-vue.html?id=layer-graphic/wfs/arcgis-feature)）。
 
 ## 3.3.2 - 2025-04-20
 #### 新增 ⚡
-- 新增 BusineDataLayer业务数据图层
-- 新增 KeyboardRoam 键盘控制类
-- 新增QueryPOI、QueryRoute查询类，内部service参数控制选用天地图、百度、高德服务
+- 新增 [BusineDataLayer](http://mars2d.cn/api/BusineDataLayer.html) 业务数据图层（示例：[业务后端数据图层](http://mars2d.cn/editor-vue.html?id=layer-graphic/basis/busineData)）。
+- 新增 [KeyboardRoam](http://mars2d.cn/api/KeyboardRoam.html) 键盘漫游控制类（示例：[键盘漫游](http://mars2d.cn/editor-vue.html?id=map/manager/keyboardRoam)）。
+- 新增 [QueryPOI](http://mars2d.cn/api/QueryPOI.html)、[QueryRoute](http://mars2d.cn/api/QueryRoute.html) 查询类，通过 service 参数选择天地图、百度或高德服务（示例：[POI点查询](http://mars2d.cn/editor-vue.html?id=query/poi)、[路径规划查询](http://mars2d.cn/editor-vue.html?id=query/route)）。
 
 #### 优化 💪
-- 线面编辑时增加整体平移编辑点
-- ClusterLayer增加clusterEnabled属性，可以控制聚合的开关
-- QueryGeoServer增加点选查询
+- 线、面编辑时增加整体平移的编辑点（示例：[标绘](http://mars2d.cn/editor-vue.html?id=layer-graphic/draw/draw)）。
+- [ClusterLayer](http://mars2d.cn/api/ClusterLayer.html) 增加 [clusterEnabled](http://mars2d.cn/api/ClusterLayer.html#clusterEnabled) 属性，可控制聚合开关（示例：[聚合点图层](http://mars2d.cn/editor-vue.html?id=layer-graphic/basis/cluster)）。
+- [QueryGeoServer](http://mars2d.cn/api/QueryGeoServer.html) 增加点选查询（示例：[GeoServer矢量服务查询](http://mars2d.cn/editor-vue.html?id=query/geoserver)）。
 
 #### 弃用 & API重构 🔒
-- 移除了TdtPOI、BaiduPOI、GaodePOI、GaodeRoute类(改用QueryPOI、QueryRoute)
-
-
+- 移除 TdtPOI、BaiduPOI、GaodePOI、GaodeRoute 类，改用 [QueryPOI](http://mars2d.cn/api/QueryPOI.html)、[QueryRoute](http://mars2d.cn/api/QueryRoute.html)（示例：[POI点查询](http://mars2d.cn/editor-vue.html?id=query/poi)）。
 
 ## 3.3.1 - 2025-02-06
 #### 新增 ⚡
-- 新增AntPath矢量对象
+- 新增 [AntPath](http://mars2d.cn/api/AntPath.html) 矢量对象（示例：[动画效果线](http://mars2d.cn/editor-vue.html?id=graphic/basis/antpath)）。
 
 #### 优化 💪
-- 线面对象增加dashSpeed参数，可以让虚线动起来
-
-
+- 线、面对象增加 dashSpeed 参数，可让虚线动起来（示例：[Polyline 线](http://mars2d.cn/editor-vue.html?id=graphic/basis/polyline)）。
 
 ## 3.3.0 - 2025-01-23
 #### 新增 ⚡
-- 线面矢量对象增加dashOffset虚线运动速度参数
+- 线、面矢量对象增加 dashOffset 参数，用于控制虚线偏移（示例：[Polyline 线](http://mars2d.cn/editor-vue.html?id=graphic/basis/polyline)）。
 
 #### 优化 💪
-- Rectangle、Circle矢量对象toGeoJSON增加outline参数
-- 新增AntPath矢量对象到SDK内，方便管理
-
-
+- [Rectangle](http://mars2d.cn/api/Rectangle.html)、[Circle](http://mars2d.cn/api/Circle.html) 的 [toGeoJSON](http://mars2d.cn/api/Circle.html#toGeoJSON) 增加 outline 参数（示例：[Rectangle 矩形](http://mars2d.cn/editor-vue.html?id=graphic/basis/rectangle)、[Circle 圆](http://mars2d.cn/editor-vue.html?id=graphic/basis/circle)）。
+- 将 [AntPath](http://mars2d.cn/api/AntPath.html) 矢量对象纳入 SDK 统一管理（示例：[动画效果线](http://mars2d.cn/editor-vue.html?id=graphic/basis/antpath)）。
 
 ---
+
 ## 3.2.10 - 2024-12-22
 #### 修复 🔧
-- LocationBar兼容平移全球地图时经度值超过180度
-- 矢量对象修改坐标时，部分对象label坐标未同步更新
+- [LocationBar](http://mars2d.cn/api/LocationBar.html) 兼容平移全球地图时经度超过 180° 的情况（示例：[下侧状态栏](http://mars2d.cn/editor-vue.html?id=control/basis/locationBar)）。
+- 修改矢量对象坐标时，部分对象的 label 坐标未同步更新。
 
 #### 弃用 & API重构 🔒
-- npm包中去掉`dist`子目录，与下载的静态包目录保持一致(如果`import "mars2d/dist/mars2d.css"`报错，请改为`import "mars2d/mars2d.css"`)
+- npm 包去掉 dist 子目录，与静态下载包的目录结构保持一致。若 `import "mars2d/dist/mars2d.css"` 报错，改为 `import "mars2d/mars2d.css"`。
 
-
-
-## 3.2.6 - 2024-7-5
+## 3.2.6 - 2024-07-05
 #### 优化 💪
-- 矢量数据标绘时增加右键删除最后一个点位
-- control增加show属性
-- geojson数据加载支持filter参数筛选数据
+- 矢量数据标绘时支持右键删除最后一个点位（示例：[标绘](http://mars2d.cn/editor-vue.html?id=layer-graphic/draw/draw)）。
+- 控件增加 show 属性（示例：[控件的控制](http://mars2d.cn/editor-vue.html?id=control/basis/display)）。
+- GeoJSON 数据加载支持 filter 参数筛选数据（示例：[GeoJson数据](http://mars2d.cn/editor-vue.html?id=layer-graphic/file/geojson)）。
 
 #### 修复 🔧
-- ArcGisFeatureLayer的symbol配置无效
-- Marker的label属性样式相关参数优化
-- polyline多色线缩放颜色变化
-- 矢量对象附带文本部分情况下未跟随坐标变动
+- [ArcGisFeatureLayer](http://mars2d.cn/api/ArcGisFeatureLayer.html) 的 symbol 配置无效（示例：[ArcGIS FeatureServer服务](http://mars2d.cn/editor-vue.html?id=layer-graphic/wfs/arcgis-feature)）。
+- 优化 [Marker](http://mars2d.cn/api/Marker.html) 的 label 样式参数（示例：[图标点+文字](http://mars2d.cn/editor-vue.html?id=graphic/basis/marker-labe)）。
+- [Polyline](http://mars2d.cn/api/Polyline.html) 多色线缩放时颜色异常变化（示例：[Polyline 线](http://mars2d.cn/editor-vue.html?id=graphic/basis/polyline)）。
+- 矢量对象附带的文本在部分情况下未跟随坐标变动（示例：[有线上文本的折线](http://mars2d.cn/editor-vue.html?id=graphic/basis/polyline-text)）。
 
-
-
-## 3.2.4 - 2024-4-21
+## 3.2.4 - 2024-04-21
 #### 优化 💪
-- ToolBar优化样式  
-- EchartsLayer增加on、off绑定事件
-- Marker、Label、DivGraphic增加minZoom、maxZoom限定显示层级参数
+- 优化 [ToolBar](http://mars2d.cn/api/ToolBar.html) 样式（示例：[工具按钮栏](http://mars2d.cn/editor-vue.html?id=control/basis/toolBar)）。
+- [EchartsLayer](http://mars2d.cn/api/EchartsLayer.html) 增加 [on](http://mars2d.cn/api/EchartsLayer.html#on)、[off](http://mars2d.cn/api/EchartsLayer.html#off) 事件绑定（示例：[饼形图标记](http://mars2d.cn/editor-vue.html?id=layer-other/echarts/marker-pie)）。
+- [Marker](http://mars2d.cn/api/Marker.html)、[Label](http://mars2d.cn/api/Label.html)、[DivGraphic](http://mars2d.cn/api/DivGraphic.html) 增加 minZoom、maxZoom 参数，限定显示层级（示例：[Marker 图标点](http://mars2d.cn/editor-vue.html?id=graphic/basis/marker)、[Label 文本](http://mars2d.cn/editor-vue.html?id=graphic/basis/label)、[DivGraphic DIV点](http://mars2d.cn/editor-vue.html?id=graphic/divGraphic/basis)）。
 
-
-
-## 3.2.1 - 2024-2-22
+## 3.2.1 - 2024-02-22
 #### 新增 ⚡
-- 矢量对象增加label附加文本属性
+- 矢量对象增加 label 附加文本属性（示例：[图标点+文字](http://mars2d.cn/editor-vue.html?id=graphic/basis/marker-labe)）。
 
 #### 优化 💪
-- 增加kml、shp格式文件加载示例
-- 重写了Util.template方法
+- 新增 KML、SHP 格式文件的加载示例（[KML](http://mars2d.cn/editor-vue.html?id=layer-graphic/file/kml2json)、[SHP](http://mars2d.cn/editor-vue.html?id=layer-graphic/file/shp2json)）。
+- 重写 [Util.template](http://mars2d.cn/api/Util.html#.template) 方法。
 
 #### 修复 🔧
-- ClusterLayer聚合图层bindPopup无效
+- [ClusterLayer](http://mars2d.cn/api/ClusterLayer.html) 聚合图层的 [bindPopup](http://mars2d.cn/api/ClusterLayer.html#bindPopup) 无效（示例：[聚合点图层](http://mars2d.cn/editor-vue.html?id=layer-graphic/basis/cluster)）。
 
-
-
-## 3.2.0 - 2024-1-16
+## 3.2.0 - 2024-01-16
 #### 新增 ⚡
-- 矢量对象增加show属性
-- 矢量对象增加hasEdit、isAutoEditing参数
-
-
+- 矢量对象增加 show 属性。
+- 矢量对象增加 hasEdit、isAutoEditing 参数（示例：[标绘](http://mars2d.cn/editor-vue.html?id=layer-graphic/draw/draw)）。
 
 ---
-## 3.1.25 - 2023-12-31 
+
+## 3.1.25 - 2023-12-31
 #### 修复 🔧
-- Polygon.toJSON导出异常
-- 瓦片图层show:false传参无效
+- [Polygon.toJSON](http://mars2d.cn/api/Polygon.html#toJSON) 导出异常（示例：[Polygon 面](http://mars2d.cn/editor-vue.html?id=graphic/basis/polygon)）。
+- 瓦片图层传入 show:false 无效（示例：[图层管理](http://mars2d.cn/editor-vue.html?id=layer-tile/manage/layers)）。
 
-
-## 3.1.22 - 2023-10-27 
+## 3.1.22 - 2023-10-27
 #### 修复 🔧
-- 4490坐标系下天地图显示异常
-- ExpImg导出图片未传入回调
-- fill和outline部分情况下更新style自动显示了
+- EPSG:4490 坐标系下天地图显示异常（示例：[天地图](http://mars2d.cn/editor-vue.html?id=layer-tile/online/tdt)）。
+- [ExpImg](http://mars2d.cn/api/ExpImg.html) 导出图片未传入回调（示例：[场景出图](http://mars2d.cn/editor-vue.html?id=thing/expImg)）。
+- 部分情况下更新 style 后，fill、outline 被自动显示（示例：[style样式](http://mars2d.cn/editor-vue.html?id=graphic/base/style)）。
 
-
-## 3.1.20 - 2023-9-13
+## 3.1.20 - 2023-09-13
 #### 新增 ⚡
-- 增加 TdtPOI 查询类
+- 新增 TdtPOI 查询类，v3.3.2 起由 [QueryPOI](http://mars2d.cn/api/QueryPOI.html) 统一提供（示例：[POI点查询](http://mars2d.cn/editor-vue.html?id=query/poi)）。
 
 #### 优化 💪
-- 矢量对象的zIndex属性支持
-- 优化Circle圆的绘制规则
+- 矢量对象支持 zIndex 属性。
+- 优化 [Circle](http://mars2d.cn/api/Circle.html) 圆的绘制规则（示例：[Circle 圆](http://mars2d.cn/editor-vue.html?id=graphic/basis/circle)）。
 
 #### 弃用 & API重构 🔒
-- 弃用mars3d-widget插件，原生JS技术栈下项目中直接改为使用源码(es5-widget.js)
+- 弃用 mars2d-widget 插件，原生 JS 技术栈的项目直接改用源码 es5-widget.js。
 
-
-
-## 3.1.17 - 2023-7-3
+## 3.1.17 - 2023-07-03
 #### 修复 🔧
-- graphic和GraphicLayer的pane参数无效
-- v3.1.15产生的OverviewMap存在2个矩形框问题
-- map的addLayer、removeLayer事件无效
+- graphic、[GraphicLayer](http://mars2d.cn/api/GraphicLayer.html) 的 pane 参数无效（示例：[graphic 矢量数据图层](http://mars2d.cn/editor-vue.html?id=layer-graphic/basis/graphicLayer)）。
+- 修复 v3.1.15 引入的 [OverviewMap](http://mars2d.cn/api/OverviewMap.html) 出现 2 个矩形框的问题（示例：[鹰眼地图](http://mars2d.cn/editor-vue.html?id=control/basis/overviewMap)）。
+- [Map](http://mars2d.cn/api/Map.html) 的 addLayer、removeLayer 事件无效（示例：[map相关事件](http://mars2d.cn/editor-vue.html?id=map/control/event)）。
 
-
-
-## 3.1.16 - 2023-6-5
+## 3.1.16 - 2023-06-05
 #### 新增 ⚡
-- 聚合图层增加右键菜单支持
-- PointTrans.latlng2coord方法没有高度时不返回0
+- 聚合图层支持右键菜单（示例：[右键菜单](http://mars2d.cn/editor-vue.html?id=control/inside/contextmenu)）。
 
 #### 修复 🔧
-- 线面编辑时，外部修改坐标后，图上编辑点未同步修改位置
-- 修复v3.1.15产生的ExpImg导出图片出错
+- 线、面编辑时，外部修改坐标后，图上的编辑点未同步移动（示例：[标绘](http://mars2d.cn/editor-vue.html?id=layer-graphic/draw/draw)）。
+- 修复 v3.1.15 引入的 [ExpImg](http://mars2d.cn/api/ExpImg.html) 导出图片出错（示例：[场景出图](http://mars2d.cn/editor-vue.html?id=thing/expImg)）。
+- [PointTrans.latlng2coord](http://mars2d.cn/api/PointTrans.html#.latlng2coord) 在没有高度时不再返回 0（示例：[坐标拾取和转换](http://mars2d.cn/editor-vue.html?id=map/manager/pointTrans)）。
 
-
-
-## 3.1.15 - 2023-5-23
+## 3.1.15 - 2023-05-23
 #### 重要说明 📣
-- Leaflet 升级至 [1.9.4](https://github.com/Leaflet/Leaflet/releases/tag/v1.9.4)
+- Leaflet 升级至 [1.9.4](https://github.com/Leaflet/Leaflet/releases/tag/v1.9.4)。
 
 #### 新增 ⚡
-- GraphicLayer增加bringToBack和bringToFront方法
-- Map增加isLoading属性和增加地图加载完成load事件
+- [GraphicLayer](http://mars2d.cn/api/GraphicLayer.html) 增加 [bringToBack](http://mars2d.cn/api/GraphicLayer.html#bringToBack)、[bringToFront](http://mars2d.cn/api/GraphicLayer.html#bringToFront) 方法（示例：[graphic 矢量数据图层](http://mars2d.cn/editor-vue.html?id=layer-graphic/basis/graphicLayer)）。
+- [Map](http://mars2d.cn/api/Map.html) 增加 [isLoading](http://mars2d.cn/api/Map.html#isLoading) 属性和地图加载完成时的 load 事件（示例：[map相关事件](http://mars2d.cn/editor-vue.html?id=map/control/event)）。
 
 #### 修复 🔧
-- GroupLayer图层zIndex设置无效
-- 谷歌在线地图服务修复
-- ExpImg.expByDraw按区域截图未恢复地图状态
+- [GroupLayer](http://mars2d.cn/api/GroupLayer.html) 的 zIndex 设置无效（示例：[图层管理](http://mars2d.cn/editor-vue.html?id=layer-tile/manage/layers)）。
+- 修复谷歌在线地图服务（示例：[谷歌](http://mars2d.cn/editor-vue.html?id=layer-tile/online/google)）。
+- [ExpImg.expByDraw](http://mars2d.cn/api/ExpImg.html#expByDraw) 按区域截图后未恢复地图状态（示例：[场景出图](http://mars2d.cn/editor-vue.html?id=thing/expImg)）。
 
-
-
-## 3.1.14 - 2023-4-24
+## 3.1.14 - 2023-04-24
 #### 新增 ⚡
-- 大部分图层支持透明度设置
+- 大部分图层支持透明度（opacity）设置（示例：[图层管理](http://mars2d.cn/editor-vue.html?id=layer-tile/manage/layers)）。
 
 #### 修复 🔧
-- Marker部分图标定位偏移
+- [Marker](http://mars2d.cn/api/Marker.html) 部分图标定位偏移（示例：[Marker 图标点](http://mars2d.cn/editor-vue.html?id=graphic/basis/marker)）。
 
-
-
-## 3.1.12 - 2023-3-20
+## 3.1.12 - 2023-03-20
 #### 新增 ⚡
-- 新增 SmTileLayer 超图瓦片服务图层
+- 新增 [SmTileLayer](http://mars2d.cn/api/SmTileLayer.html) 超图瓦片服务图层（示例：[超图瓦片](http://mars2d.cn/editor-vue.html?id=layer-tile/type/sm-tile)）。
 
-
-
-## 3.1.10 - 2023-1-10
+## 3.1.10 - 2023-01-10
 #### 重要说明 📣
-- Leaflet 升级至 [1.9.3](https://github.com/Leaflet/Leaflet/releases/tag/v1.9.3)
+- Leaflet 升级至 [1.9.3](https://github.com/Leaflet/Leaflet/releases/tag/v1.9.3)。
 
 #### 修复 🔧
-- 修复mars2d.d.ts错误
-- 修复全屏按钮多次切换问题
-
-
+- 修正 mars2d.d.ts 中的错误。
+- 修复全屏按钮多次切换的问题（示例：[工具按钮栏](http://mars2d.cn/editor-vue.html?id=control/basis/toolBar)）。
 
 ## 3.1.9 - 2022-11-30
 #### 优化 💪
-- 量算类增加绘制编辑事件的抛出
-- 增加rightClick右键事件
-- 矢量数据增加销毁方法
+- 量算类增加绘制、编辑事件的抛出（示例：[量算](http://mars2d.cn/editor-vue.html?id=thing/measure)）。
+- 新增 rightClick 右键事件（示例：[map相关事件](http://mars2d.cn/editor-vue.html?id=map/control/event)）。
+- 矢量数据增加销毁方法。
 
 #### 修复 🔧
-- 右键菜单绑定地图与矢量数据有叠加
-- snake路线多次停止开启运行异常
-- 地图scale控件参数无法配置
-- MapSplit控件支持数组图层配置
-
+- 地图与矢量数据的右键菜单绑定后出现叠加（示例：[右键菜单](http://mars2d.cn/editor-vue.html?id=control/inside/contextmenu)）。
+- snake 路线多次停止、开启后运行异常（示例：[线的运动动画](http://mars2d.cn/editor-vue.html?id=graphic/basis/polyline-snakeIn)）。
+- 地图 scale（比例尺）控件的参数无法配置（示例：[比例尺](http://mars2d.cn/editor-vue.html?id=control/leaflet/scale)）。
+- [MapSplit](http://mars2d.cn/api/MapSplit.html) 控件支持数组形式的图层配置（示例：[卷帘对比](http://mars2d.cn/editor-vue.html?id=control/basis/mapSplit)）。
 
 ## 3.1.7 - 2022-10-24
 #### 重要说明 📣
-- Leaflet 升级至 [1.9.2](https://github.com/Leaflet/Leaflet/releases/tag/v1.9.2)
+- Leaflet 升级至 [1.9.2](https://github.com/Leaflet/Leaflet/releases/tag/v1.9.2)。
 
 #### 优化 💪
-- WfsLayer、ArcGisFeatureLayer等图层增加flyTo方法
+- [WfsLayer](http://mars2d.cn/api/WfsLayer.html)、[ArcGisFeatureLayer](http://mars2d.cn/api/ArcGisFeatureLayer.html) 等图层增加 [flyTo](http://mars2d.cn/api/WfsLayer.html#flyTo) 方法（示例：[OGC WFS服务](http://mars2d.cn/editor-vue.html?id=layer-graphic/wfs/ogc-wfs)）。
 
 #### 修复 🔧
-- snakeIn路线style颜色传值无效
-- Circle绘制中radius没有动态回传
-- formatDate方法格式化无效
+- snakeIn 路线 style 中的颜色传值无效（示例：[线的运动动画](http://mars2d.cn/editor-vue.html?id=graphic/basis/polyline-snakeIn)）。
+- [Circle](http://mars2d.cn/api/Circle.html) 绘制过程中 radius 未动态回传（示例：[标绘](http://mars2d.cn/editor-vue.html?id=layer-graphic/draw/draw)）。
+- [Util.formatDate](http://mars2d.cn/api/Util.html#.formatDate) 格式化无效。
 
-
-
-## 3.1.6 - 2022-9-16
+## 3.1.6 - 2022-09-16
 #### 优化 💪
-- vue示例和项目UI部分进行重构
-- 矢量数据增加toJSON方法
+- 重构 Vue 示例与项目 UI。
 
+#### 新增 ⚡
+- 矢量数据增加 toJSON 方法。
 
-
-## 3.1.5 - 2022-8-1
+## 3.1.5 - 2022-08-01
 #### 优化 💪
-- 对Map中图层内部的存储和读取方式做了优化
+- 优化 [Map](http://mars2d.cn/api/Map.html) 内部图层的存储与读取方式（示例：[图层管理](http://mars2d.cn/editor-vue.html?id=layer-tile/manage/layers)）。
 
 #### 弃用 & API重构 🔒
-- 图层、矢量数据类弃用uuid属性，全部统一为[id](http://mars2d.cn/api/GraphicLayer.html#id)
+- 图层、矢量数据类弃用 uuid 属性，统一改用 [id](http://mars2d.cn/api/GraphicLayer.html#id)。
 
-
-
-## 3.1.4  - 2022-6-26
+## 3.1.4 - 2022-06-26
 #### 新增 ⚡
-- GeoJsonLayer图层增加chinaCRS参数，支持数据自动纠偏
+- [GeoJsonLayer](http://mars2d.cn/api/GeoJsonLayer.html) 增加 chinaCRS 参数，支持数据自动纠偏（示例：[底图纠偏](http://mars2d.cn/editor-vue.html?id=layer-tile/manage/chinaCRS)）。
 
 #### 优化 💪
-- vue功能示例编辑器重写
-- 增加主库和插件库中第3方依赖JS库未引入时的错误提示，方便排查问题
+- 重写 Vue 功能示例编辑器。
+- 主库和插件库中第三方依赖 JS 库未引入时给出错误提示，便于排查问题。
 
 #### 修复 🔧
-- graphicLayer.openPopup偶尔报错问题
-- GeoJsonLayer图层popupOptions参数未生效
+- [GraphicLayer.openPopup](http://mars2d.cn/api/GraphicLayer.html#openPopup) 偶发报错（示例：[Popup鼠标单击信息窗](http://mars2d.cn/editor-vue.html?id=control/inside/popup)）。
+- [GeoJsonLayer](http://mars2d.cn/api/GeoJsonLayer.html) 的 popupOptions 参数未生效（示例：[GeoJson数据](http://mars2d.cn/editor-vue.html?id=layer-graphic/file/geojson)）。
 
-
-
-## 3.1.3  - 2022-4-29
+## 3.1.3 - 2022-04-29
 #### 重要说明 📣
-- Leaflet 升级至 [1.8.0](https://github.com/Leaflet/Leaflet/releases/tag/v1.8.0)
-- 发布了 v3.1 版
-- SDK内部重新架构
+- Leaflet 升级至 [1.8.0](https://github.com/Leaflet/Leaflet/releases/tag/v1.8.0)。
+- 发布 v3.1 版本。
+- SDK 内部重新架构。
 
 #### 新增 ⚡
-- 增加MapSplit双屏对比控件
-- 更新mars2d.Token所有默认值
-- 增加mars2d.Token.updateAll方法，方便外部更新覆盖
+- 新增 [MapSplit](http://mars2d.cn/api/MapSplit.html) 双屏对比控件（示例：[双屏对比](http://mars2d.cn/editor-vue.html?id=map/double/compare)）。
+- 更新 [mars2d.Token](http://mars2d.cn/api/Token.html) 的所有默认值。
+- 新增 [Token.updateAll](http://mars2d.cn/api/Token.html#.updateAll) 方法，便于外部批量更新。
 
 #### 修复 🔧
-- 修复部分DivGraphic拖拽后的定位存在偏差
-- 修复一些已知bug
+- 修正部分 [DivGraphic](http://mars2d.cn/api/DivGraphic.html) 拖拽后的定位偏差（示例：[DivGraphic DIV点](http://mars2d.cn/editor-vue.html?id=graphic/divGraphic/basis)）。
+- 修复其它已知问题。
 
- 
-
-## 3.0.9  - 2022-3-8
+## 3.0.9 - 2022-03-08
 #### 新增 ⚡
-- Circle增加outlineLatlngs属性
-- 增加QueryArcServer、QueryGeoServer查询类
-- 新增了一批示例
+- [Circle](http://mars2d.cn/api/Circle.html) 增加 [outlineLatlngs](http://mars2d.cn/api/Circle.html#outlineLatlngs) 属性（示例：[Circle 圆](http://mars2d.cn/editor-vue.html?id=graphic/basis/circle)）。
+- 新增 [QueryArcServer](http://mars2d.cn/api/QueryArcServer.html)、[QueryGeoServer](http://mars2d.cn/api/QueryGeoServer.html) 查询类（示例：[ArcGIS Server矢量服务查询](http://mars2d.cn/editor-vue.html?id=query/arcgis)、[GeoServer矢量服务查询](http://mars2d.cn/editor-vue.html?id=query/geoserver)）。
+- 新增一批功能示例。
 
 #### 修复 🔧
-- 自由线绘制的偶尔报错
-- 量算的编辑
-- GaodePOI 中限定区域无效
+- 自由线（brush）绘制偶发报错（示例：[标绘](http://mars2d.cn/editor-vue.html?id=layer-graphic/draw/draw)）。
+- 量算结果编辑时出现异常（示例：[量算](http://mars2d.cn/editor-vue.html?id=thing/measure)）。
+- 高德 POI 查询（原 GaodePOI，现由 [QueryPOI](http://mars2d.cn/api/QueryPOI.html) 提供）中限定区域无效（示例：[POI点查询](http://mars2d.cn/editor-vue.html?id=query/poi)）。
 
-
-
-## 3.0.8  - 2022-2-25
+## 3.0.8 - 2022-02-25
 #### 重要说明 📣
-- 基础项目vue版上线发布
-- 功能示例原生JS版优化(与Vue版保持一致性)
+- Vue 版基础项目上线发布。
+- 原生 JS 版功能示例优化，与 Vue 版保持一致。
 
 #### 新增 ⚡
-- 增加ToolButton控件
-- 完善API文档及TS定义
+- 新增 [ToolButton](http://mars2d.cn/api/ToolButton.html) 控件（示例：[自定义工具栏按钮](http://mars2d.cn/editor-vue.html?id=control/basis/toolButton)）。
+- 完善 API 文档与 TypeScript 定义。
 
-
- 
-## 3.0.7  - 2022-2-20
+## 3.0.7 - 2022-02-20
 #### 重要说明 📣
-- 功能示例vue版上线发布
- 
+- Vue 版功能示例上线发布。
+
 #### 新增 ⚡
-- wms图层增加click事件和popup支持
-- 增加ToolButton控件
-- 增加 mars2d.d.ts 对TS支持
+- [WmsLayer](http://mars2d.cn/api/WmsLayer.html) 增加 click 事件与 popup 支持（示例：[OGC WMS服务](http://mars2d.cn/editor-vue.html?id=layer-tile/type/wms)）。
+- 新增 [ToolButton](http://mars2d.cn/api/ToolButton.html) 控件（示例：[自定义工具栏按钮](http://mars2d.cn/editor-vue.html?id=control/basis/toolButton)）。
+- 新增 mars2d.d.ts，提供 TypeScript 类型支持。
 
 #### 修复 🔧
-- 检查API文档描述错误并修复
-- 修复v3.0.5版show修改带来的瓦片图层不展示
-- 圆、矩形完成后激活编辑失败 
-- 测试了一轮并修复了一批bug问题
+- 核对并修正 API 文档中的描述错误。
+- 修复 v3.0.5 修改 show 后瓦片图层不显示的问题（示例：[图层管理](http://mars2d.cn/editor-vue.html?id=layer-tile/manage/layers)）。
+- 圆、矩形绘制完成后激活编辑失败（示例：[Circle 圆](http://mars2d.cn/editor-vue.html?id=graphic/basis/circle)、[Rectangle 矩形](http://mars2d.cn/editor-vue.html?id=graphic/basis/rectangle)）。
+- 完成一轮测试，修复一批问题。
 
 #### 弃用 & API重构 🔒
-- 移除axios库，改用 mars2d.Util.fetchJson或sendAjax方法
-- 优化pbf图层，vectorTileLayerStyles参数改名style，并简化了参数形式
+- 移除 axios 库，改用 [Util.fetchJson](http://mars2d.cn/api/Util.html#.fetchJson) 或 [Util.sendAjax](http://mars2d.cn/api/Util.html#.sendAjax)。
+- 优化 PBF 图层：[PbfLayer](http://mars2d.cn/api/PbfLayer.html) 的 vectorTileLayerStyles 参数改名为 style，并简化参数形式（示例：[pbf矢量瓦片服务](http://mars2d.cn/editor-vue.html?id=layer-graphic/wfs/pbf)）。
 
-
-## 3.0.5  - 2022-1-17
+## 3.0.5 - 2022-01-17
 #### 优化 💪
-- 对图层增加show参数和属性
-- 优化状态栏的小分辨率时的显示
+- 图层增加 show 参数与属性（示例：[图层管理](http://mars2d.cn/editor-vue.html?id=layer-tile/manage/layers)）。
+- 优化状态栏在小分辨率下的显示（示例：[下侧状态栏](http://mars2d.cn/editor-vue.html?id=control/basis/locationBar)）。
 
 #### 修复 🔧
-- 修复已知的一些bug
+- 修复已知问题。
 
- 
-
-## 3.0.3  - 2021-12-17
+## 3.0.3 - 2021-12-17
 #### 重要说明 📣
-- Leaflet 升级至 [1.7.1](https://github.com/Leaflet/Leaflet/releases/tag/v1.7.1)
-- 完成所有 V2 的功能示例的对应 V3 新版开发
-- v3.0正式稳定版本发布
-- 优化了SDK内部的接口方法，并整理及发布API文档
-- 完成了教程的编写
+- Leaflet 升级至 [1.7.1](https://github.com/Leaflet/Leaflet/releases/tag/v1.7.1)。
+- 完成 V2 全部功能示例的 V3 新版开发。
+- v3.0 正式稳定版发布。
+- 优化 SDK 内部接口方法，整理并发布 API 文档。
+- 完成教程编写。
 
 #### 修复 🔧
-- 完成了一轮测试并修复了所有bug问题
+- 完成一轮测试并修复已知缺陷。
 
- 
-
-
-## 3.0.0  - 2021-11-16
+## 3.0.0 - 2021-11-16
 #### 重要说明 📣
-- 发布了 v3.0 版
-- 易学：使用和语法都按开发人员用户习惯最优设计，降低开发人员能力要求，只用初级水平开发人员即可上手。
-- 规范：API 从顶层统一规范的从零重构、将插件优化至SDK内，并提供统一规范的API。
-- 高效率：提高了开发效率和平台的渲染效率。
-- 详细的 API 和教程：重新编写了详细的教程文档、自动根据 SDK 注释生成的最详尽的 API 文档，并完全免费开放。
-- 功能示例和项目模板：并规划开发了 Vue 版 功能示例和基础项目。
-- 免费：免费无限制使用
+- 发布 v3.0 版本。
+- **易学**：用法与语法按开发者使用习惯设计，降低上手门槛，初级开发者即可使用。
+- **规范**：API 从顶层统一规划、从零重构，插件收敛进 SDK，对外提供统一规范的 API。
+- **高效**：提升开发效率与平台渲染效率。
+- **文档完善**：重写教程文档，基于 SDK 注释自动生成详尽的 API 文档，完全免费开放。
+- **配套示例**：提供 Vue 版功能示例与基础项目模板。
+- **免费**：免费、无限制使用。
 
 #### 新增 ⚡
-- 矢量数据：全新设计了矢量数据体系，采用Graphic矢量数据（统一的规范和style设计）和GraphicLayer矢量数据图层来统一管理。
-- GeoJson图层：设计了新的GeoJsonLayer，采用可在symobl中配置type参数指定Graphic类型来渲染。
+- 矢量数据：全新设计矢量数据体系，以 Graphic 矢量对象（统一的规范与 style 设计）配合 [GraphicLayer](http://mars2d.cn/api/GraphicLayer.html) 矢量图层统一管理（示例：[Marker 图标点](http://mars2d.cn/editor-vue.html?id=graphic/basis/marker)）。
+- GeoJSON 图层：新增 [GeoJsonLayer](http://mars2d.cn/api/GeoJsonLayer.html)，可在 symbol 中通过 type 参数指定 Graphic 类型来渲染（示例：[GeoJson数据](http://mars2d.cn/editor-vue.html?id=layer-graphic/file/geojson)）。
 
 #### 弃用 & API重构 🔒
-- v3.0版与v2.x版本还不兼容(API结构不同)，无法兼容平滑的升级，因为v3所有代码从零开始编写搭建的,不是基于之前的老版本修改的。
- 
+- v3.0 与 v2.x 不兼容（API 结构不同），无法平滑升级：v3 的全部代码均为从零编写，并非基于旧版本修改。
 
 ---
 
-## 2.0.0  - 2020-1-1
+## 2.0.0 - 2020-01-01
 #### 重要说明 📣
-- 发布了v2.0
+- 发布 v2.0。
 
-
-
-## 1.0.0  - 2017-8-25
+## 1.0.0 - 2017-08-25
 #### 重要说明 📣
-- 发布了v1.0
+- 发布 v1.0。
+
