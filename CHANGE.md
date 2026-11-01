@@ -39,10 +39,14 @@ Mars2D 的版本号由三段组成。以 **v3.2.1** 为例：**主版本号为 3
 
 ## 3.5.0 - 2026-11-01
 #### 重要说明 📣
-- 优化 SDK 打包：主文件 mars2d.js 由 2.1 MB 减小到 0.86 MB（约 60%），同时提升运行性能。
+- 优化 SDK 打包：主文件 mars2d.js大小减小了约60%，同时提升运行性能。
 - 梳理 mars2d.d.ts 类型声明，补齐与运行时一致的公开成员。
 - 全面校正 JSDoc 注释与实际实现不一致的问题（默认值、返回值、继承关系、失效选项等），并删除或标注尚未实现的选项与文档占位。API文档支持查询属性、方法名称，并修复子类未正常显示继承于父类相关方法的错误。
 - 新增自动化测试体系：单元、契约与示例驱动测试, 真实 Chrome/Edge 端到端测试）、c8 覆盖率门槛、采集浏览器覆盖率并与 c8 合并, 串联静态检查 → 构建 → 声明校验 → 单测 → E2E。
+
+#### 新增 ⚡
+- 新增 [Map.removeLayers()](http://mars2d.cn/api/Map.html#removeLayers)，一次移除多个图层：结果与逐个调用 [removeLayer()](http://mars2d.cn/api/Map.html#removeLayer) 一致（同样触发 removeLayer 事件并同步图层管理控件），但内部图层列表只做一次批量清理；批量移除 5000 个图层由约 36ms 降到约 9ms（Node 24 + jsdom 基准）。
+- 新增 [MarsArray.removeMany()](http://mars2d.cn/api/MarsArray.html#removeMany)，按主键批量删除并保留其余元素顺序，避免逐个 [remove()](http://mars2d.cn/api/MarsArray.html#remove) 的 O(n²)；5000 条删除由约 27ms 降到约 1ms（口径同上）。
 
 #### 优化 💪
 - SVG 渲染：图片填充 pattern 按「图片 + 颜色 + 透明度」复用，避免每次 setStyle 新增节点导致 defs 无限增长；fillOpacity、imageOpacity 为 0 时不再被当作 1。
@@ -53,6 +57,15 @@ Mars2D 的版本号由三段组成。以 **v3.2.1** 为例：**主版本号为 3
 - 依赖：运行时升级至 ECharts 6、pbf 5、rbush 4、@mapbox/vector-tile 3、simpleheat 1、proj4 2.22、esri-leaflet 3.0.19、@terraformer/arcgis 2.2.2；[PbfLayer](http://mars2d.cn/api/PbfLayer.html) 适配 PbfReader，[HeatLayer](http://mars2d.cn/api/HeatLayer.html) 适配 SimpleHeat 的构造方式；`mars2d` 自引用移入 devDependencies。
 - 构建：Rollup 2 升级至 Rollup 4，保持原有产物语义；消除 mars2d-esri 插件的 `Illegal reassignment to import` 告警；构建与打包脚本适配 commander 15、chalk 6、glob 14 的新入口。
 - 工程：d.ts 生成链路改用 TS AST，把字符串枚举改写为 `declare const` + `declare type`，把「其他」「其他参数」占位属性改写为索引签名，并新增声明校验脚本。
+- 坐标转换：[PointTrans.proj4Trans()](http://mars2d.cn/api/PointTrans.html#.proj4Trans) 按坐标系对缓存 proj4 转换器，不再逐点重建投影对象；2 万个坐标点做 EPSG:4527→4326 转换由约 73ms 降到约 24ms（约 65%，Node 24 + jsdom 基准）。
+- 样式转换：[BaseStyleConver](http://mars2d.cn/api/BaseStyleConver.html) 的排除键表改为常量，不再按样式键逐个新建数组；2 万次转换由约 20ms 降到约 6ms（约 68%，口径同上）。
+- 鼠标交互：[Map.setCursor()](http://mars2d.cn/api/Map.html#setCursor) 与 [SmallTooltip.close()](http://mars2d.cn/api/SmallTooltip.html#close) 在样式值未变化时跳过 DOM 写入，鼠标快速扫过 [CanvasMarkerLayer](http://mars2d.cn/api/CanvasMarkerLayer.html) 时不再反复触发样式失效；10 万次 setCursor 由约 260ms 降到约 47ms（约 82%，口径同上）。
+- 点位批量：[CanvasMarkerLayer.addGraphics()](http://mars2d.cn/api/CanvasMarkerLayer.html#addGraphics) 整批只取一次地图范围，2 万个标记由约 40ms 降到约 22ms（约 45%，口径同上）（示例：[CanvesMarker大数据点图层](http://mars2d.cn/editor-vue.html?id=layer-graphic/basis/canvas-marker)）。
+- WFS：[WfsLayer](http://mars2d.cn/api/WfsLayer.html) 改用集合记录已加载要素与分块缓存，不再逐要素线性查找（O(n²) → O(n)）（示例：[OGC WFS服务](http://mars2d.cn/editor-vue.html?id=layer-graphic/wfs/ogc-wfs)）。
+- 经纬网：[GraticuleLayer](http://mars2d.cn/api/GraticuleLayer.html) 同一次视图变化只重绘一次，画布尺寸未变化时不再重置 canvas 后备存储（示例：[经纬网](http://mars2d.cn/editor-vue.html?id=layer-graphic/other/graticule)）。
+- 其它细节：矢量对象加入/移出地图与 setStyle 时不再创建一次性闭包；[Map.getNextLayerId()](http://mars2d.cn/api/Map.html#getNextLayerId) 的已占用 id 集合改用 Set；[Util.template()](http://mars2d.cn/api/Util.html#.template) 去掉前置的整串正则 test。
+- 构建：私有成员改名逻辑集中到 scripts/build/private-property/，新增白名单 config.js 与兄弟项目使用快照 snapshot.json，压缩产物中被下游继承或覆盖的私有成员名保持稳定。
+- 文档：[Map](http://mars2d.cn/api/Map.html) 的 renderer 参数说明与 [GraphicLayer](http://mars2d.cn/api/GraphicLayer.html) 类注释补充大数据量下的渲染器选择与实测结论（2 万面要素改用 renderer: L.canvas() 后首屏约 0.3s、拖拽约 59fps；默认 SVG 下 5000 面即降到约 4fps），并补充 graphicOptions 参数说明（示例：[GeoJson大数据面(Canvas合并渲染)](http://mars2d.cn/editor-vue.html?id=layer-graphic/file/geojson-canvas)）。
 
 ---
 
@@ -430,4 +443,3 @@ Mars2D 的版本号由三段组成。以 **v3.2.1** 为例：**主版本号为 3
 ## 1.0.0 - 2017-08-25
 #### 重要说明 📣
 - 发布 v1.0。
-
