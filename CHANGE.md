@@ -37,6 +37,42 @@ Mars2D 的版本号由三段组成。以 **v3.2.1** 为例：**主版本号为 3
 
 ## 4. 更新日志
 
+## 3.5.1 - 2026-11-07
+
+#### 新增 ⚡
+- 新增 [CanvasMarkerLayer.getContext()](http://mars2d.cn/api/CanvasMarkerLayer.html#getContext)，在 customDraw 回调中可直接获取 Canvas 2D 上下文绘制个性点，画布未初始化时返回 null（示例：[CanvesMarker大数据点图层](http://mars2d.cn/editor-vue.html?id=layer-graphic/basis/canvas-marker)）。
+- 新增 [FeatureGroup.getLatLngs()](http://mars2d.cn/api/FeatureGroup.html#getLatLngs)，按成员聚合返回经纬度数组，组合矢量对象可直接读取整体坐标。
+- 新增 [CanvasImage.getLatLngs()](http://mars2d.cn/api/CanvasImage.html#getLatLngs)，返回图片矩形的四角坐标（示例：[CanvasImage 图片](http://mars2d.cn/editor-vue.html?id=graphic/basis/image-canvas)）。
+
+#### 优化 💪
+- 工程：新增 API 冒烟测试与多项回归测试，端到端覆盖率与单元覆盖率合并统计，CI 串联 lint、构建、声明校验、单元测试与 E2E。
+- WFS：`loadFeatures` 支持传入多个过滤条件（数组按 And 组合）；请求带代际标记，切换图层或清空后旧响应不再写入；`show:false` 或缩放层级不满足时不再请求与渲染要素（示例：[OGC WFS服务](http://mars2d.cn/editor-vue.html?id=layer-graphic/wfs/ogc-wfs)）。
+- PBF：重写瓦片渲染生命周期，瓦片卸载时释放渲染器与事件，图片异步加载完成后按需重绘，缩放与平移后不再出现空白瓦片（示例：[pbf矢量瓦片服务](http://mars2d.cn/editor-vue.html?id=layer-graphic/wfs/pbf)）。
+- 雨雪：[Rain](http://mars2d.cn/api/Rain.html) 的顶点数据改为一次构建与写入，着色器编译后及时释放，移除时释放 program 与缓冲，降低大量粒子场景下的内存占用（示例：[雪](http://mars2d.cn/editor-vue.html?id=graphic/basis/snow)）。
+
+#### 修复 🔧
+- [Map](http://mars2d.cn/api/Map.html)：[addLayer](http://mars2d.cn/api/Map.html#addLayer) 重复添加同一图层时直接返回已有对象；[removeLayer](http://mars2d.cn/api/Map.html#removeLayer) 移除未上图图层时安全返回；图层 id 为 0，或字符串与数字形式的同一 id 冲突时不再被重新赋值；[getNextLayerId](http://mars2d.cn/api/Map.html#getNextLayerId) 不再返回已占用的 id。
+- [Map](http://mars2d.cn/api/Map.html)：[getLayersByAttr](http://mars2d.cn/api/Map.html#getLayersByAttr) 合并配置图层并去重；[removeLayers](http://mars2d.cn/api/Map.html#removeLayers) 与内部图层列表、removeLayer 事件保持一致；[removeControl](http://mars2d.cn/api/Map.html#removeControl) 只清理当前控件对应的缓存。
+- [Map](http://mars2d.cn/api/Map.html)：[remove()](http://mars2d.cn/api/Map.html#remove) 会清理 Thing、图层计时器、SmallTooltip、右键菜单与水印容器；[addThing](http://mars2d.cn/api/Map.html#addThing)、[removeThing](http://mars2d.cn/api/Map.html#removeThing)、[hasThing](http://mars2d.cn/api/Map.html#hasThing) 按实例判重，`_onAdd` 抛错时回滚登记。
+- [Map](http://mars2d.cn/api/Map.html)：[setOptions](http://mars2d.cn/api/Map.html#setOptions) 的 crs、center、zoom、maxBounds、右键菜单与滚轮缩放按新值生效，不再重复绑定默认菜单；同时配置 center 与 extent 时 [flyHome](http://mars2d.cn/api/Map.html#flyHome) 优先定位 extent；`basemap` 只加载目标底图。
+- [GraphicLayer](http://mars2d.cn/api/GraphicLayer.html)：图层 show 与单个 graphic 的 show 正确联动；重复添加同一矢量对象不再重复上图；支持按 id 移除矢量对象；[getGraphicById](http://mars2d.cn/api/GraphicLayer.html#getGraphicById) 支持 id 为 0；[clearLayers](http://mars2d.cn/api/GraphicLayer.html#clearLayers) 会先停止编辑，[loadJSON](http://mars2d.cn/api/GraphicLayer.html#loadJSON) 未挂图时不再报错。
+- [GraphicLayer](http://mars2d.cn/api/GraphicLayer.html) 绘制：[startDraw](http://mars2d.cn/api/GraphicLayer.html#startDraw) 返回的 Promise 在取消、清空或重复结束时返回 null 而不再挂起；[endDraw](http://mars2d.cn/api/GraphicLayer.html#endDraw)、[stopDraw](http://mars2d.cn/api/GraphicLayer.html#stopDraw)、[clearDrawing](http://mars2d.cn/api/GraphicLayer.html#clearDrawing) 统一销毁绘制对象并解绑事件，连续标绘可正常进入下一次（示例：[标绘](http://mars2d.cn/editor-vue.html?id=layer-graphic/draw/draw)）。
+- [CanvasMarkerLayer](http://mars2d.cn/api/CanvasMarkerLayer.html)：未上图时先添加数据、移除后重新添加、移除图标时不再出现空引用错误，重新挂载后画布正常重绘（示例：[CanvesMarker大数据点图层](http://mars2d.cn/editor-vue.html?id=layer-graphic/basis/canvas-marker)）。
+- [Marker](http://mars2d.cn/api/Marker.html)：移除后解绑 zoom 监听，避免重复添加时监听累积；[setStyle](http://mars2d.cn/api/Marker.html#setStyle) 未提供图标来源时保留原图标而不再崩溃（示例：[Marker 图标点](http://mars2d.cn/editor-vue.html?id=graphic/basis/marker)）。
+- [AntPath](http://mars2d.cn/api/AntPath.html)：移除后再次添加可正常显示；addLatLng、setLatLngs 后内部坐标与两条子线保持同步（示例：[动画效果线](http://mars2d.cn/editor-vue.html?id=graphic/basis/antpath)）。
+- [PolyDecorator](http://mars2d.cn/api/PolyDecorator.html)：未挂图即可读取 [getLatLngs](http://mars2d.cn/api/PolyDecorator.html#getLatLngs)、bounds 与导出；style 未配置 symbol 时按普通线处理而不再崩溃（示例：[线面装饰点](http://mars2d.cn/editor-vue.html?id=graphic/basis/polyDecorator)）。
+- [Polygon.isInPoly](http://mars2d.cn/api/Polygon.html#isInPoly) 支持多面与带洞面的判断；线上文本的鼠标事件改为派发带 originalEvent 的矢量事件，与线本身保持一致（示例：[Polygon 面](http://mars2d.cn/editor-vue.html?id=graphic/basis/polygon)）。
+- [Image](http://mars2d.cn/api/Image.html) 与 [CanvasImage](http://mars2d.cn/api/CanvasImage.html)：setStyle 修改 url 后图片立即更新；CanvasImage 补齐 getLatLngs 并修正 toGeoJSON，导出不再报错（示例：[CanvasImage 图片](http://mars2d.cn/editor-vue.html?id=graphic/basis/image-canvas)）。
+- [Rain](http://mars2d.cn/api/Rain.html)、[Snow](http://mars2d.cn/api/Snow.html)：WebGL 不可用或图层移除后 setStyle、drawScene、redraw 不再空引用崩溃，重新添加可继续渲染（示例：[雨](http://mars2d.cn/editor-vue.html?id=graphic/basis/rain)、[雪](http://mars2d.cn/editor-vue.html?id=graphic/basis/snow)）。
+- 绘制与编辑：撤销临时点、取消绘制后的延迟触发不再误完成；自由线首段从起点开始；圆、矩形在拖动结束前已取消时不再触发完成；[EditEllipse](http://mars2d.cn/api/EditEllipse.html) 缩放手柄跟随椭圆旋转角度；[EditPoly](http://mars2d.cn/api/EditPoly.html) 连续越界提示后恢复原颜色（示例：[标绘](http://mars2d.cn/editor-vue.html?id=layer-graphic/draw/draw)）。
+- 控件：[MapSplit](http://mars2d.cn/api/MapSplit.html) 多个实例不再共用拖拽状态；[Slider](http://mars2d.cn/api/Slider.html) 修正最小层级下的起始值、释放 document 鼠标事件、minZoom 等于 maxZoom 时不再除零；[ToolBar](http://mars2d.cn/api/ToolBar.html) 支持 zoom 为 0 并清理定位图标；[SmallTooltip](http://mars2d.cn/api/SmallTooltip.html) 坐标为 0 时不再被当作未传（示例：[卷帘对比](http://mars2d.cn/editor-vue.html?id=control/basis/mapSplit)、[鱼骨导航](http://mars2d.cn/editor-vue.html?id=control/basis/slider)）。
+- 矢量图层：[GeoJsonLayer](http://mars2d.cn/api/GeoJsonLayer.html) 的 mask 支持 MultiPolygon 与多要素，数据未加载时 [getBounds](http://mars2d.cn/api/GeoJsonLayer.html#getBounds) 不再取错范围；[BusineDataLayer](http://mars2d.cn/api/BusineDataLayer.html) 初始 show:false 时在显示后加载；[ClusterLayer](http://mars2d.cn/api/ClusterLayer.html) 重复添加与未上图添加安全（示例：[绘制反选遮罩层](http://mars2d.cn/editor-vue.html?id=layer-tile/manage/mask)、[聚合点 图层](http://mars2d.cn/editor-vue.html?id=layer-graphic/basis/cluster)）。
+- 矢量图层：[GroupLayer](http://mars2d.cn/api/GroupLayer.html) 的 length 返回实际图层数；[GraticuleLayer](http://mars2d.cn/api/GraticuleLayer.html) 经纬度为 0 或画布未初始化时不再漏绘、报错；[HeatLayer](http://mars2d.cn/api/HeatLayer.html) 移除时取消动画帧（示例：[经纬网](http://mars2d.cn/editor-vue.html?id=layer-graphic/other/graticule)、[热力图](http://mars2d.cn/editor-vue.html?id=layer-other/heatLayer)）。
+- 瓦片图层：[WmsLayer](http://mars2d.cn/api/WmsLayer.html)、[WmtsLayer](http://mars2d.cn/api/WmtsLayer.html) 的查询结果在图层移除或隐藏后不再弹窗；[ArcGisCompactLayer](http://mars2d.cn/api/ArcGisCompactLayer.html) 索引或瓦片解析失败时结束瓦片加载；[MapboxLayer](http://mars2d.cn/api/MapboxLayer.html) 的 scaleFactor 为 false 时不再拼接 @2x；[SmTileLayer](http://mars2d.cn/api/SmTileLayer.html) 使用实际瓦片尺寸计算分辨率；[TileLayer](http://mars2d.cn/api/TileLayer.html) 的 customColor 在 setOptions 后生效，缩略图缓存失败会释放。
+- 查询：[QueryPOI](http://mars2d.cn/api/QueryPOI.html) 的 [autoTip](http://mars2d.cn/api/QueryPOI.html#autoTip) 接受经纬度并正确转换，范围查询的 polygon 经纬度顺序修正；百度矩形范围补齐四角，高德多边形首尾闭合；天地图单条路线与 extent 为 0 的情况不再报错；[QueryGeoServer](http://mars2d.cn/api/QueryGeoServer.html) 空响应转为失败回调（示例：[POI点查询](http://mars2d.cn/editor-vue.html?id=query/poi)）。
+- 插件：[ArcGisDynamicLayer](http://mars2d.cn/api/ArcGisDynamicLayer.html) 移除后解绑地图 click、dblclick 与延时回调，弹窗关闭时不再清理已销毁的高亮图层（示例：[ArcGIS MapServer动态服务](http://mars2d.cn/editor-vue.html?id=layer-graphic/wfs/arcgis-dynamic)）。
+- 其它：请求 data 为 0 或空字符串时不再被丢弃，且不修改调用方传入的 headers；全屏能力检测、进入与退出兼容更多浏览器，失败时不再抛出未捕获异常；Proj.GeoJSON 解析嵌套要素时保留 crs 转换并回填坐标高度；右键连续粘贴不再修改剪贴板对象；[FeatureGroup](http://mars2d.cn/api/FeatureGroup.html) 克隆、无坐标面要素比较、两点以下的偏移线不再报错（示例：[右键菜单](http://mars2d.cn/editor-vue.html?id=control/inside/contextmenu)）。
+
 ## 3.5.0 - 2026-11-01
 #### 重要说明 📣
 - 优化 SDK 打包：主文件 mars2d.js大小减小了约60%，同时提升运行性能。
