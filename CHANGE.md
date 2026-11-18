@@ -37,6 +37,27 @@ Mars2D 的版本号由三段组成。以 **v3.2.1** 为例：**主版本号为 3
 
 ## 4. 更新日志
 
+## 3.5.2 - 2026-11-18
+
+#### 新增 ⚡
+- 新增 [LabelLayer](http://mars2d.cn/api/LabelLayer.html) 图层，把文字绘制到独立 canvas 并按屏幕网格做碰撞检测，适合千～万级标注；支持 `data` 数组与 `sourceLayer` 两种数据来源，可按 `priority` 保留重叠标签，提供 [setData](http://mars2d.cn/api/LabelLayer.html#setData)、[addData](http://mars2d.cn/api/LabelLayer.html#addData)、[setSourceLayer](http://mars2d.cn/api/LabelLayer.html#setSourceLayer)、[getLabelCount](http://mars2d.cn/api/LabelLayer.html#getLabelCount) 等方法与 `labelclick`、`labelmouseover`、`labelmouseout` 事件，配置中可用 `type: "label"` 创建（示例：[LabelLayer 大批量标注](http://mars2d.cn/editor-vue.html?id=layer-graphic/basis/label-layer)）。
+- 新增 [ArcPolyline](http://mars2d.cn/api/ArcPolyline.html) 矢量对象，用两个端点绘制带流动点、拖尾与终点脉冲的弧线，多条弧线共享同一 canvas 与动画循环；支持 [setStyle](http://mars2d.cn/api/ArcPolyline.html#setStyle)、[setLatLngs](http://mars2d.cn/api/ArcPolyline.html#setLatLngs)、[getEndpoints](http://mars2d.cn/api/ArcPolyline.html#getEndpoints)，在 `style.hitTolerance`（默认 8px）内触发 click/mouseover 后可继续 bindPopup、bindTooltip，配置中可用 `type: "arcPolyline"` 创建（示例：[弧线动画(ArcPolyline)](http://mars2d.cn/editor-vue.html?id=graphic/basis/arc-polyline)）。
+- [CanvasMarkerLayer](http://mars2d.cn/api/CanvasMarkerLayer.html) 新增屏幕空间碰撞参数 `collision`、`collisionPadding`、`collisionMode`（`hide` 隐藏、`dim` 降低透明度）、`priority` 与 `collisionSize`；开启后重叠点按优先级保留，只对最终绘制的点响应点击与悬停，碰撞只覆盖本图层的 Canvas 点（示例：[CanvesMarker大数据点图层](http://mars2d.cn/editor-vue.html?id=layer-graphic/basis/canvas-marker)）。
+- [ToolBar](http://mars2d.cn/api/ToolBar.html) 新增 [getButton(name)](http://mars2d.cn/api/ToolBar.html#getButton)，按 `home`、`location`、`fullscreen`、`clear` 取按钮 DOM，便于二次显隐或禁用，按钮未创建时返回 undefined（示例：[工具按钮栏](http://mars2d.cn/editor-vue.html?id=control/basis/toolBar)）。
+- [ClusterLayer](http://mars2d.cn/api/ClusterLayer.html) 新增 [getChildCount(marker)](http://mars2d.cn/api/ClusterLayer.html#getChildCount)，普通点返回 1、聚合点返回聚合的标记数量，传入空值返回 0（示例：[聚合点 图层](http://mars2d.cn/editor-vue.html?id=layer-graphic/basis/cluster)）。
+- [LayerUtil](http://mars2d.cn/api/LayerUtil.html) 新增静态方法 [isMapInitLayer(layer)](http://mars2d.cn/api/LayerUtil.html#.isMapInitLayer)，判断图层是否由创建地图时的 `basemaps`、`operationallayers` 初始化，运行期新增的图层返回 false。
+- `mars2d.css` 新增 7 个公共 CSS 变量（`--mars2d-base-bg`、`--mars2d-text-color`、`--mars2d-border-color`、`--mars2d-primary-color`、`--mars2d-text-color-inverse`、`--mars2d-base-bg-translucent`、`--mars2d-shadow-color`），在 `:root` 上覆盖即可切换皮肤底色与主色，控件、面板、弹窗、右键菜单统一使用这些变量。
+
+#### 优化 💪
+- 移动端与触屏：悬停样式限定在 `@media (hover: hover)`，触控目标在 `@media (pointer: coarse)` 下加大（右键菜单行高 40px、字号 14px，鹰眼图折叠按钮最小 28px，Slider 滑块增加透明命中区）；MapSwich 用 `env(safe-area-inset-*)` 适配刘海屏与底部手势区，窄屏下 SmallTooltip、Tooltip、右键菜单与弹窗标题限宽换行。
+- 样式：清理重复规则与 IE 时代的 `-moz`、`-ms`、`-o` 关键帧及 `animation` 前缀，`mars2d.css` 的冗余规则同步减少，现代浏览器下控件样式保持一致。
+
+#### 修复 🔧
+- [DayNightLayer](http://mars2d.cn/api/DayNightLayer.html)：默认 `color`、`fillColor` 为非法 CSS 颜色 `#00`，canvas 会沿用上一次的 `fillStyle`，夜间区域颜色随绘制顺序变化；现默认值改为 `#000`，未显式传颜色时稳定显示黑色夜间区域（示例：[昼夜覆盖区域](http://mars2d.cn/editor-vue.html?id=layer-graphic/other/day-night)）。
+
+
+
+
 ## 3.5.1 - 2026-11-07
 
 #### 新增 ⚡
@@ -45,7 +66,6 @@ Mars2D 的版本号由三段组成。以 **v3.2.1** 为例：**主版本号为 3
 - 新增 [CanvasImage.getLatLngs()](http://mars2d.cn/api/CanvasImage.html#getLatLngs)，返回图片矩形的四角坐标（示例：[CanvasImage 图片](http://mars2d.cn/editor-vue.html?id=graphic/basis/image-canvas)）。
 
 #### 优化 💪
-- 工程：新增 API 冒烟测试与多项回归测试，端到端覆盖率与单元覆盖率合并统计，CI 串联 lint、构建、声明校验、单元测试与 E2E。
 - WFS：`loadFeatures` 支持传入多个过滤条件（数组按 And 组合）；请求带代际标记，切换图层或清空后旧响应不再写入；`show:false` 或缩放层级不满足时不再请求与渲染要素（示例：[OGC WFS服务](http://mars2d.cn/editor-vue.html?id=layer-graphic/wfs/ogc-wfs)）。
 - PBF：重写瓦片渲染生命周期，瓦片卸载时释放渲染器与事件，图片异步加载完成后按需重绘，缩放与平移后不再出现空白瓦片（示例：[pbf矢量瓦片服务](http://mars2d.cn/editor-vue.html?id=layer-graphic/wfs/pbf)）。
 - 雨雪：[Rain](http://mars2d.cn/api/Rain.html) 的顶点数据改为一次构建与写入，着色器编译后及时释放，移除时释放 program 与缓冲，降低大量粒子场景下的内存占用（示例：[雪](http://mars2d.cn/editor-vue.html?id=graphic/basis/snow)）。
@@ -78,7 +98,6 @@ Mars2D 的版本号由三段组成。以 **v3.2.1** 为例：**主版本号为 3
 - 优化 SDK 打包：主文件 mars2d.js大小减小了约60%，同时提升运行性能。
 - 梳理 mars2d.d.ts 类型声明，补齐与运行时一致的公开成员。
 - 全面校正 JSDoc 注释与实际实现不一致的问题（默认值、返回值、继承关系、失效选项等），并删除或标注尚未实现的选项与文档占位。API文档支持查询属性、方法名称，并修复子类未正常显示继承于父类相关方法的错误。
-- 新增自动化测试体系：单元、契约与示例驱动测试, 真实 Chrome/Edge 端到端测试）、c8 覆盖率门槛、采集浏览器覆盖率并与 c8 合并, 串联静态检查 → 构建 → 声明校验 → 单测 → E2E。
 
 #### 新增 ⚡
 - 新增 [Map.removeLayers()](http://mars2d.cn/api/Map.html#removeLayers)，一次移除多个图层：结果与逐个调用 [removeLayer()](http://mars2d.cn/api/Map.html#removeLayer) 一致（同样触发 removeLayer 事件并同步图层管理控件），但内部图层列表只做一次批量清理；批量移除 5000 个图层由约 36ms 降到约 9ms（Node 24 + jsdom 基准）。
@@ -91,8 +110,6 @@ Mars2D 的版本号由三段组成。以 **v3.2.1** 为例：**主版本号为 3
 - 其它：导出下载后释放 Blob URL；复用右键菜单尺寸缓存；[Marker](http://mars2d.cn/api/Marker.html) 图标尺寸轮询增加超时上限。
 - [Map.addLayer](http://mars2d.cn/api/Map.html#addLayer)：不再把 Leaflet 内部渲染器（L.SVG、L.Canvas）登记为图层，[getLayers()](http://mars2d.cn/api/Map.html#getLayers)、[getLayrsTree()](http://mars2d.cn/api/Map.html#getLayrsTree)、[getLayersByAttr()](http://mars2d.cn/api/Map.html#getLayersByAttr) 不再返回内部对象；外部传入且没有 id 的原生 Leaflet 图层会自动按 [getNextLayerId()](http://mars2d.cn/api/Map.html#getNextLayerId) 赋值，避免多个无 id 图层在图层列表中相互覆盖。
 - 依赖：运行时升级至 ECharts 6、pbf 5、rbush 4、@mapbox/vector-tile 3、simpleheat 1、proj4 2.22、esri-leaflet 3.0.19、@terraformer/arcgis 2.2.2；[PbfLayer](http://mars2d.cn/api/PbfLayer.html) 适配 PbfReader，[HeatLayer](http://mars2d.cn/api/HeatLayer.html) 适配 SimpleHeat 的构造方式；`mars2d` 自引用移入 devDependencies。
-- 构建：Rollup 2 升级至 Rollup 4，保持原有产物语义；消除 mars2d-esri 插件的 `Illegal reassignment to import` 告警；构建与打包脚本适配 commander 15、chalk 6、glob 14 的新入口。
-- 工程：d.ts 生成链路改用 TS AST，把字符串枚举改写为 `declare const` + `declare type`，把「其他」「其他参数」占位属性改写为索引签名，并新增声明校验脚本。
 - 坐标转换：[PointTrans.proj4Trans()](http://mars2d.cn/api/PointTrans.html#.proj4Trans) 按坐标系对缓存 proj4 转换器，不再逐点重建投影对象；2 万个坐标点做 EPSG:4527→4326 转换由约 73ms 降到约 24ms（约 65%，Node 24 + jsdom 基准）。
 - 样式转换：[BaseStyleConver](http://mars2d.cn/api/BaseStyleConver.html) 的排除键表改为常量，不再按样式键逐个新建数组；2 万次转换由约 20ms 降到约 6ms（约 68%，口径同上）。
 - 鼠标交互：[Map.setCursor()](http://mars2d.cn/api/Map.html#setCursor) 与 [SmallTooltip.close()](http://mars2d.cn/api/SmallTooltip.html#close) 在样式值未变化时跳过 DOM 写入，鼠标快速扫过 [CanvasMarkerLayer](http://mars2d.cn/api/CanvasMarkerLayer.html) 时不再反复触发样式失效；10 万次 setCursor 由约 260ms 降到约 47ms（约 82%，口径同上）。
@@ -100,8 +117,7 @@ Mars2D 的版本号由三段组成。以 **v3.2.1** 为例：**主版本号为 3
 - WFS：[WfsLayer](http://mars2d.cn/api/WfsLayer.html) 改用集合记录已加载要素与分块缓存，不再逐要素线性查找（O(n²) → O(n)）（示例：[OGC WFS服务](http://mars2d.cn/editor-vue.html?id=layer-graphic/wfs/ogc-wfs)）。
 - 经纬网：[GraticuleLayer](http://mars2d.cn/api/GraticuleLayer.html) 同一次视图变化只重绘一次，画布尺寸未变化时不再重置 canvas 后备存储（示例：[经纬网](http://mars2d.cn/editor-vue.html?id=layer-graphic/other/graticule)）。
 - 其它细节：矢量对象加入/移出地图与 setStyle 时不再创建一次性闭包；[Map.getNextLayerId()](http://mars2d.cn/api/Map.html#getNextLayerId) 的已占用 id 集合改用 Set；[Util.template()](http://mars2d.cn/api/Util.html#.template) 去掉前置的整串正则 test。
-- 构建：私有成员改名逻辑集中到 scripts/build/private-property/，新增白名单 config.js 与兄弟项目使用快照 snapshot.json，压缩产物中被下游继承或覆盖的私有成员名保持稳定。
-- 文档：[Map](http://mars2d.cn/api/Map.html) 的 renderer 参数说明与 [GraphicLayer](http://mars2d.cn/api/GraphicLayer.html) 类注释补充大数据量下的渲染器选择与实测结论（2 万面要素改用 renderer: L.canvas() 后首屏约 0.3s、拖拽约 59fps；默认 SVG 下 5000 面即降到约 4fps），并补充 graphicOptions 参数说明（示例：[GeoJson大数据面(Canvas合并渲染)](http://mars2d.cn/editor-vue.html?id=layer-graphic/file/geojson-canvas)）。
+- 文档：[Map](http://mars2d.cn/api/Map.html) 的 renderer 参数说明与 [GraphicLayer](http://mars2d.cn/api/GraphicLayer.html) 类注释补充大数据量下的渲染器选择与实测结论（2 万面要素改用 renderer: L.canvas() 后首屏约 0.3s、拖拽约 59fps；默认 SVG 下 5000 面即降到约 4fps），并补充 graphicOptions 参数说明（示例：[GeoJson大数据面(Canvas合并渲染)](http://mars2d.cn/editor-vue.html?id=thirdParty/geojson-canvas)）。
 
 ---
 
@@ -145,8 +161,6 @@ Mars2D 的版本号由三段组成。以 **v3.2.1** 为例：**主版本号为 3
 - 修复其它已知问题。
 
 ## 3.3.7 - 2025-12-30
-#### 优化 💪
-- 插件产物中增加编译时间信息，便于排查问题。
 
 #### 修复 🔧
 - [GeoJsonLayer](http://mars2d.cn/api/GeoJsonLayer.html) 开启 mask 时 [flyTo](http://mars2d.cn/api/GeoJsonLayer.html#flyTo) 定位范围不准确（示例：[绘制反选遮罩层](http://mars2d.cn/editor-vue.html?id=layer-tile/manage/mask)）。
@@ -178,7 +192,7 @@ Mars2D 的版本号由三段组成。以 **v3.2.1** 为例：**主版本号为 3
 - [Circle](http://mars2d.cn/api/Circle.html) 增加 diffuse 样式参数（示例：[Circle 圆](http://mars2d.cn/editor-vue.html?id=graphic/basis/circle)）。
 - [Map](http://mars2d.cn/api/Map.html) 增加 [getLayrsTree](http://mars2d.cn/api/Map.html#getLayrsTree) 方法（示例：[图层管理](http://mars2d.cn/editor-vue.html?id=layer-tile/manage/layers)）。
 - 新增 [PolyUtil.movePoints](http://mars2d.cn/api/PolyUtil.html#.movePoints) 方法。
-- 新增功能示例：[旋转地图](http://mars2d.cn/editor-vue.html?id=map/manager/rotate)、[迁徙效果](http://mars2d.cn/editor-vue.html?id=graphic/basis/polyline-migration)、[有线上文本的折线](http://mars2d.cn/editor-vue.html?id=graphic/basis/polyline-text)、[时序轨迹路线](http://mars2d.cn/editor-vue.html?id=layer-graphic/other/trackplayback)。
+- 新增功能示例：[旋转地图](http://mars2d.cn/editor-vue.html?id=thirdParty/rotate)、[迁徙效果](http://mars2d.cn/editor-vue.html?id=graphic/basis/arc-polyline)、[有线上文本的折线](http://mars2d.cn/editor-vue.html?id=graphic/basis/polyline-text)、[时序轨迹路线](http://mars2d.cn/editor-vue.html?id=thirdParty/trackplayback)。
 
 #### 修复 🔧
 - [WmsLayer](http://mars2d.cn/api/WmsLayer.html) 请求参数中去掉冗余的 url（示例：[OGC WMS服务](http://mars2d.cn/editor-vue.html?id=layer-tile/type/wms)）。
@@ -355,8 +369,6 @@ Mars2D 的版本号由三段组成。以 **v3.2.1** 为例：**主版本号为 3
 - [Util.formatDate](http://mars2d.cn/api/Util.html#.formatDate) 格式化无效。
 
 ## 3.1.6 - 2022-09-16
-#### 优化 💪
-- 重构 Vue 示例与项目 UI。
 
 #### 新增 ⚡
 - 矢量数据增加 toJSON 方法。
@@ -373,7 +385,6 @@ Mars2D 的版本号由三段组成。以 **v3.2.1** 为例：**主版本号为 3
 - [GeoJsonLayer](http://mars2d.cn/api/GeoJsonLayer.html) 增加 chinaCRS 参数，支持数据自动纠偏（示例：[底图纠偏](http://mars2d.cn/editor-vue.html?id=layer-tile/manage/chinaCRS)）。
 
 #### 优化 💪
-- 重写 Vue 功能示例编辑器。
 - 主库和插件库中第三方依赖 JS 库未引入时给出错误提示，便于排查问题。
 
 #### 修复 🔧
@@ -384,7 +395,6 @@ Mars2D 的版本号由三段组成。以 **v3.2.1** 为例：**主版本号为 3
 #### 重要说明 📣
 - Leaflet 升级至 [1.8.0](https://github.com/Leaflet/Leaflet/releases/tag/v1.8.0)。
 - 发布 v3.1 版本。
-- SDK 内部重新架构。
 
 #### 新增 ⚡
 - 新增 [MapSplit](http://mars2d.cn/api/MapSplit.html) 双屏对比控件（示例：[双屏对比](http://mars2d.cn/editor-vue.html?id=map/double/compare)）。
@@ -428,7 +438,6 @@ Mars2D 的版本号由三段组成。以 **v3.2.1** 为例：**主版本号为 3
 - 核对并修正 API 文档中的描述错误。
 - 修复 v3.0.5 修改 show 后瓦片图层不显示的问题（示例：[图层管理](http://mars2d.cn/editor-vue.html?id=layer-tile/manage/layers)）。
 - 圆、矩形绘制完成后激活编辑失败（示例：[Circle 圆](http://mars2d.cn/editor-vue.html?id=graphic/basis/circle)、[Rectangle 矩形](http://mars2d.cn/editor-vue.html?id=graphic/basis/rectangle)）。
-- 完成一轮测试，修复一批问题。
 
 #### 弃用 & API重构 🔒
 - 移除 axios 库，改用 [Util.fetchJson](http://mars2d.cn/api/Util.html#.fetchJson) 或 [Util.sendAjax](http://mars2d.cn/api/Util.html#.sendAjax)。
@@ -447,11 +456,8 @@ Mars2D 的版本号由三段组成。以 **v3.2.1** 为例：**主版本号为 3
 - Leaflet 升级至 [1.7.1](https://github.com/Leaflet/Leaflet/releases/tag/v1.7.1)。
 - 完成 V2 全部功能示例的 V3 新版开发。
 - v3.0 正式稳定版发布。
-- 优化 SDK 内部接口方法，整理并发布 API 文档。
+- 整理并发布 API 文档。
 - 完成教程编写。
-
-#### 修复 🔧
-- 完成一轮测试并修复已知缺陷。
 
 ## 3.0.0 - 2021-11-16
 #### 重要说明 📣
